@@ -1,0 +1,35 @@
+{
+    "name": "gwleuverink/lockdown",
+    "description": "Easily lock down sections of your Laravel app wit Basic Access Authentication without any NGINX or Apache configuration.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Willem Leuverink",
+            "email": "willem@leuver.ink"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^8.1",
+        "orchestra/testbench": "~3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gwleuverink\\Lockdown\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Gwleuverink\\Lockdown\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Gwleuverink\\Lockdown\\ServiceProvider"
+            ]
+        }
+    }
+}
