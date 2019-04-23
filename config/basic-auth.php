@@ -2,8 +2,10 @@
 
 return [
 
-    'enabled' => env('BASIC_AUTH_ENABLED', true),
+    'middleware-enabled' => env('BASIC_AUTH_ENABLED', true),
     'default' => 'config',
+    
+    'table' => 'basic_auth_users',
 
     /*
     |--------------------------------------------------------------------------
@@ -27,6 +29,9 @@ return [
         ],
         'database' => [
             'driver' => 'database',
+            'arguments' => [
+                'group' => 'default'
+            ]
         ]
     ]
 ];

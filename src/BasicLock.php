@@ -32,7 +32,7 @@ class BasicLock
         $guard = (object) $this->config->get("guards.$guardName");
         $driverFqcn = sprintf('\\%s\\Drivers\\%sDriver', __NAMESPACE__, ucfirst($guard->driver));
 
-        return $this->getDriver($driverFqcn, $guard->arguments)->authenticate();
+        return $this->getDriver($driverFqcn, $guard->arguments ?? null)->authenticate();
     }
 
     /**

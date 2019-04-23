@@ -25,12 +25,15 @@ class BasicLockGuard
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        $lock = $this->app->make(BasicLockFactory::class)->build($request);
+        if(config('basic-auth.middleware-enabled')) {
+            
+            $lock = $this->app->make(BasicLockFactory::class)->build($request);
 
-        if (!$lock->authenticates($guard)) {
-            return new AccessDeniedResponse();
+            if (!$lock->authenticates($guard)) {
+                return new AccessDeniedResponse();
+            }
         }
-
+        
         return $next($request);
     }
 }

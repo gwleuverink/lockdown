@@ -22,7 +22,7 @@ abstract class Driver implements DriverContract
      *
      * @return string
      */
-    protected function getProvidedUser()
+    protected final function getProvidedUser()
     {   
         return $this->request->server->get('PHP_AUTH_USER');
     }
@@ -32,7 +32,7 @@ abstract class Driver implements DriverContract
      *
      * @return string
      */
-    protected function getProvidedPassword()
+    protected final function getProvidedPassword()
     {        
         return $this->request->server->get('PHP_AUTH_PW');
     }
@@ -43,8 +43,8 @@ abstract class Driver implements DriverContract
      *
      * @return boolean
      */
-    protected function hasCredentials() : bool
+    protected final function hasCredentials() : bool
     {
-        return ($this->getProvidedUser() && $this->getProvidedPassword());
+        return $this->getProvidedUser() && $this->getProvidedPassword();
     }
 }

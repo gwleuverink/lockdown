@@ -28,7 +28,7 @@ class RouteGuardTest extends TestCase
 
 
     /** @test */
-    public function it_returns_200_response_when_visiting_unprotected_route()
+    public function it_returns_ok_response_when_visiting_unprotected_route()
     {
         // act
         $response = $this->get('lockdown/unprotected');
@@ -39,7 +39,7 @@ class RouteGuardTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_200_response_when_visiting_protected_route_with_valid_credentials()
+    public function it_returns_ok_response_when_visiting_protected_route_with_valid_credentials()
     {
         // arrange
         // We need to set the server variables explicitly because 
@@ -49,6 +49,20 @@ class RouteGuardTest extends TestCase
             'PHP_AUTH_USER' => 'admin',
             'PHP_AUTH_PW' => 'secret'
         ]);
+
+        // act
+        $response = $this->get('lockdown/protected');
+
+        //assert
+        $response->assertStatus(Response::HTTP_OK);
+        $response->assertHeaderMissing('WWW-Authenticate');
+    }
+
+    /** @test */
+    public function it_returns_ok_response_when_visiting_protected_route_when_middleware_is_disabled()
+    {
+        // arrange
+        config(['basic-auth.middleware-enabled' => false]);
 
         // act
         $response = $this->get('lockdown/protected');
