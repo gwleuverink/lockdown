@@ -6,21 +6,21 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class CreateDatabaseUser extends Command
+class DeleteDatabaseUser extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'basic-lock:create-user {user} {password} {group?}';
+    protected $signature = 'basic-lock:delete-user {user} {group?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new Basic Auth user for the BasicLock database driver.';
+    protected $description = 'Delete a Basic Auth user for the BasicLock database driver.';
 
     /**
      * Create a new command instance.
@@ -39,10 +39,9 @@ class CreateDatabaseUser extends Command
      */
     public function handle()
     {
-        DB::table(config('basic-lock.table'))->insert([
-            'group' => $this->argument('group') ?? 'default',
-            'user' => $this->argument('user'),
-            'password' => Hash::make($this->argument('password'))
-        ]);
+        DB::table(config('basic-lock.table'))
+            ->whereGroup($this->argument('group') ?? 'default')
+            ->whereUser($this->argument('user'))
+            ->delete();
     }
 }
