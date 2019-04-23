@@ -6,15 +6,9 @@ use Orchestra\Testbench\TestCase as BaseTestCase;
 use Gwleuverink\Lockdown\ServiceProvider;
 
 class TestCase extends BaseTestCase {
-    
-    public function setUp() : void
-    {
-        parent::setUp();
-        $this->registerPackageServiceProvider();
-    }
 
-    private function registerPackageServiceProvider()
+    protected function getPackageProviders($app)
     {
-        $this->app->register(ServiceProvider::class);
+        return [ServiceProvider::class];
     }
 }

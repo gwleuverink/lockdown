@@ -2,8 +2,7 @@
 
 namespace Gwleuverink\Lockdown\Tests\Unit;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Artisan;
 use Gwleuverink\Lockdown\Tests\TestCase;
 use Gwleuverink\Lockdown\BasicLockFactory;
 
@@ -17,11 +16,16 @@ class DatabaseDriverTest extends TestCase
         parent::setUp();
 
         $this->factory = $this->app->make(BasicLockFactory::class);
+
+        // Create a database user
+        Artisan::call('basic-lock:create-user', [
+            'user' => 'admin',
+            'password' => 'secret'
+        ]);
     }
 
     protected function getEnvironmentSetUp($app)
     {
-
         include_once __DIR__ . '/../../database/migrations/create_basic_lock_users_table.php.stub';
     
         (new \CreateBasicAuthUsersTable)->up();
@@ -46,12 +50,6 @@ class DatabaseDriverTest extends TestCase
     {
         
         // arrange
-        DB::table(config('basic-lock.table'))->insert([
-            'group' => 'default',
-            'user' => 'admin',
-            'password' => Hash::make('secret')
-        ]);
-
         $this->app->request->server->add([
             'PHP_AUTH_USER' => 'wrong_user',
             'PHP_AUTH_PW' => 'wrong_password'
@@ -70,12 +68,6 @@ class DatabaseDriverTest extends TestCase
     public function it_passes_authentication_with_credentials()
     {
         // arrange
-        DB::table(config('basic-lock.table'))->insert([
-            'group' => 'default',
-            'user' => 'admin',
-            'password' => Hash::make('secret')
-        ]);
-
         $this->app->request->server->add([
             'PHP_AUTH_USER' => 'admin',
             'PHP_AUTH_PW' => 'secret'
