@@ -15,6 +15,7 @@ class BasicLockConfigurationTest extends TestCase
         $this->assertNotNull($lock->config->get('enabled'));
         $this->assertNotNull($lock->config->get('default'));
         $this->assertNotNull($lock->config->get('guards'));
-        $this->assertNotNull($lock->config->get('guards.default'));
+        $this->assertNotNull($lock->config->get('guards.config'));
+        $this->assertNotNull($lock->config->get('guards.database'));
     }
 }

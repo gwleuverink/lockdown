@@ -3,37 +3,51 @@
 namespace Gwleuverink\Lockdown;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
-use Gwleuverink\Lockdown\Contracts\Unlockable;
 use Illuminate\Config\Repository as ConfigRepository;
+use Gwleuverink\Lockdown\Exceptions\DriverNotFoundException;
+use Gwleuverink\Lockdown\Contracts\DriverContract;
 
-class BasicLock implements Unlockable {
-
+class BasicLock
+{
     protected $request;
     protected $config;
 
-    public function __construct(Request $request, ConfigRepository $config) {
+    public function __construct(Request $request, ConfigRepository $config)
+    {
         $this->request = $request;
         $this->config = $config;
     }
 
-    public function turnKey() : bool
+    /**
+     * Check if current request passes the
+     * BasicLock authentication guard
+     *
+     * @param string $guardName
+     * @return boolean
+     */
+    public function authenticates($guardName) : bool
     {
-        $user = 'admin';
-        $password = 'admssin';
+        $guardName = $guardName ?? $this->config->get('default');
 
-        $providedUser = $this->request->server->get('PHP_AUTH_USER');
-        $providedPassword = $this->request->server->get('PHP_AUTH_PW');
+        $guard = (object) $this->config->get("guards.$guardName");
+        $driverFqcn = sprintf('\\%s\\Drivers\\%sDriver', __NAMESPACE__, ucfirst($guard->driver));
 
-        $hasCredentials = ($providedUser && $providedPassword);
-
-        $authenticated = ($hasCredentials && $providedUser === $user && $providedPassword === $password);
-
-        return $authenticated;
+        return $this->getDriver($driverFqcn, $guard->arguments)->authenticate();
     }
 
-    public function authenticationResponse()
+    /**
+     * Build a driver instance
+     *
+     * @param string $driver
+     * @param object $arguments
+     * @return DriverContract
+     */
+    private function getDriver ($driver, $arguments = null) : DriverContract
     {
-        return Response::make('', 401, ['WWW-Authenticate' => 'Basic realm="Access denied"']);
+        if (! class_exists($driver)) {
+            throw new DriverNotFoundException($driver);
+        }
+
+        return new $driver($this->request, $arguments);
     }
 }
