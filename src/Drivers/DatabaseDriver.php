@@ -33,7 +33,9 @@ class DatabaseDriver extends Driver
                     ->whereUser($this->getProvidedUser())
                     ->first();
 
-        if(! $user) return false;
+        if (! $user) {
+            return false;
+        }
 
         // Check the password
         return Hash::check($this->getProvidedPassword(), $user->password);

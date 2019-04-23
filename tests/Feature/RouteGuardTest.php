@@ -11,8 +11,10 @@ class RouteGuardTest extends TestCase
     public function setUp() : void
     {
         parent::setUp();
-        Route::get('lockdown/protected', function () {})->middleware('lockdown');
-        Route::get('lockdown/unprotected', function () {});
+        Route::get('lockdown/protected', function () {
+        })->middleware('basic-lock');
+        Route::get('lockdown/unprotected', function () {
+        });
     }
 
     /** @test */
@@ -42,7 +44,7 @@ class RouteGuardTest extends TestCase
     public function it_returns_ok_response_when_visiting_protected_route_with_valid_credentials()
     {
         // arrange
-        // We need to set the server variables explicitly because 
+        // We need to set the server variables explicitly because
         // PHP_AUTH_USER & PHP_AUTH_PW are not set in CGI mode
         // When using the authorisation header with a token.
         $this->withServerVariables([

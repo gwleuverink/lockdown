@@ -9,7 +9,18 @@ use Gwleuverink\Lockdown\Contracts\DriverContract;
 
 class BasicLock
 {
+    /**
+     * The current request instance
+     *
+     * @var Request
+     */
     protected $request;
+
+    /**
+     * The guard configuration
+     *
+     * @var ConfigRepository
+     */
     protected $config;
 
     public function __construct(Request $request, ConfigRepository $config)
@@ -42,7 +53,7 @@ class BasicLock
      * @param object $arguments
      * @return DriverContract
      */
-    private function getDriver ($driver, $arguments = null) : DriverContract
+    private function getDriver($driver, $arguments = null) : DriverContract
     {
         if (! class_exists($driver)) {
             throw new DriverNotFoundException($driver);

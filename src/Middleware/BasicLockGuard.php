@@ -25,8 +25,7 @@ class BasicLockGuard
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if(config('basic-lock.middleware-enabled')) {
-            
+        if (config('basic-lock.middleware-enabled')) {
             $lock = $this->app->make(BasicLockFactory::class)->build($request);
 
             if (!$lock->authenticates($guard)) {

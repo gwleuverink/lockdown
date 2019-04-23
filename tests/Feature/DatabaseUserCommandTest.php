@@ -8,7 +8,6 @@ use Gwleuverink\Lockdown\Tests\TestCase;
 
 class DatabaseUserCommandTest extends TestCase
 {
-
     public function setUp() : void
     {
         parent::setUp();

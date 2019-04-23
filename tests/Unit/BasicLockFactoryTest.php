@@ -5,7 +5,7 @@ namespace Gwleuverink\Lockdown\Tests\Unit;
 use Gwleuverink\Lockdown\Tests\TestCase;
 use Gwleuverink\Lockdown\BasicLockFactory;
 use Illuminate\Config\Repository as ConfigRepository;
- use Gwleuverink\Lockdown\BasicLock;
+use Gwleuverink\Lockdown\BasicLock;
 
 class BasicLockFactoryTest extends TestCase
 {

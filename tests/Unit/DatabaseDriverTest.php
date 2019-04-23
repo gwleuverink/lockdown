@@ -43,7 +43,7 @@ class DatabaseDriverTest extends TestCase
 
         // assert
         $this->assertFalse($authenticates);
-    }  
+    }
 
     /** @test */
     public function it_does_not_pass_authentication_with_faulty_credentials()
@@ -61,8 +61,8 @@ class DatabaseDriverTest extends TestCase
         $authenticates = $lock->authenticates(self::DRIVER);
 
         // assert
-        $this->assertFalse($authenticates);        
-    }  
+        $this->assertFalse($authenticates);
+    }
 
     /** @test */
     public function it_passes_authentication_with_credentials()
@@ -80,5 +80,5 @@ class DatabaseDriverTest extends TestCase
 
         // assert
         $this->assertTrue($authenticates);
-    }  
+    }
 }

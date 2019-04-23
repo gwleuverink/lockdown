@@ -11,7 +11,7 @@ interface DriverContract
     /**
      * Check if current request passes the
      * BasicLock authentication guard
-     * 
+     *
      * @return boolean
      */
     public function authenticate() : bool;

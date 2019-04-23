@@ -13,10 +13,10 @@ class ServiceProvider extends BaseServiceProvider
     public function boot()
     {
         // Boot middleware
-        $this->app->router->aliasMiddleware('lockdown', BasicLockGuard::class);
+        $this->app->router->aliasMiddleware('basic-lock', BasicLockGuard::class);
 
         // Boot commands
-        if($this->app->runningInConsole()) {
+        if ($this->app->runningInConsole()) {
             $this->commands([
                 CreateDatabaseUser::class,
                 DeleteDatabaseUser::class
@@ -25,17 +25,16 @@ class ServiceProvider extends BaseServiceProvider
 
         // Publish config
         $this->publishes([
-             __DIR__ . '/../config/basic-lock.php' => base_path('config/basic-lock.php') 
+             __DIR__ . '/../config/basic-lock.php' => base_path('config/basic-lock.php')
         ], 'config');
 
         // Publish migrations
-        if(! class_exists('CreateBasicAuthUsersTable')) {
+        if (! class_exists('CreateBasicAuthUsersTable')) {
             $this->publishes([
-                __DIR__ . '/../database/migrations/create_basic_lock_users_table.php.stub' => 
+                __DIR__ . '/../database/migrations/create_basic_lock_users_table.php.stub' =>
                 database_path('migrations/' . date('Y_m_d_His', time()) . '_create_basic_lock_users_table.php')
             ], 'migrations');
         }
-        
     }
 
     public function register()
