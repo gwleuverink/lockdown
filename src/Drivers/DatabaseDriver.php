@@ -23,12 +23,12 @@ class DatabaseDriver extends Driver
         }
 
         throw_unless(
-            Schema::hasTable(config('basic-lock.table')),
+            Schema::hasTable(config('lockdown.table')),
             BasicLockUsersTableNotFoundException::class
         );
         
         // Find a user
-        $user = DB::table(config('basic-lock.table'))
+        $user = DB::table(config('lockdown.table'))
                     ->whereGroup($this->arguments->get('group'))
                     ->whereUser($this->getProvidedUser())
                     ->first();

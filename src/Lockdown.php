@@ -7,7 +7,7 @@ use Illuminate\Config\Repository as ConfigRepository;
 use Gwleuverink\Lockdown\Exceptions\DriverNotFoundException;
 use Gwleuverink\Lockdown\Contracts\DriverContract;
 
-class BasicLock
+class Lockdown
 {
     /**
      * The current request instance

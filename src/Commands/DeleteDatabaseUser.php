@@ -13,7 +13,7 @@ class DeleteDatabaseUser extends Command
      *
      * @var string
      */
-    protected $signature = 'basic-lock:delete-user {user} {group?}';
+    protected $signature = 'lockdown:delete-user {user} {group?}';
 
     /**
      * The console command description.
@@ -39,7 +39,7 @@ class DeleteDatabaseUser extends Command
      */
     public function handle()
     {
-        DB::table(config('basic-lock.table'))
+        DB::table(config('lockdown.table'))
             ->whereGroup($this->argument('group') ?? 'default')
             ->whereUser($this->argument('user'))
             ->delete();

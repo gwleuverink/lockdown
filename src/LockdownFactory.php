@@ -2,12 +2,11 @@
 
 namespace Gwleuverink\Lockdown;
 
-use Illuminate\Support\Collection;
 use Illuminate\Contracts\Foundation\Application;
 use \Illuminate\Config\Repository as ConfigRepository;
 use Illuminate\Http\Request;
 
-class BasicLockFactory
+class LockdownFactory
 {
 
     /**
@@ -18,7 +17,7 @@ class BasicLockFactory
     private $app;
 
     /**
-     * The basic-lock configuration
+     * The lockdown configuration
      *
      * @var ConfigRepository
      */
@@ -35,20 +34,20 @@ class BasicLockFactory
      * Return a BasicLock instance
      *
      * @param Request $request
-     * @return BasicLock
+     * @return Lockdown
      */
     public function build(Request $request)
     {
-        return new BasicLock($request, $this->config);
+        return new Lockdown($request, $this->config);
     }
 
     /**
-     * Load basic-lock configuration
+     * Load lockdown configuration
      *
      * @return void
      */
     private function loadConfig()
     {
-        $this->config = new ConfigRepository($this->app->config->get('basic-lock'));
+        $this->config = new ConfigRepository($this->app->config->get('lockdown'));
     }
 }

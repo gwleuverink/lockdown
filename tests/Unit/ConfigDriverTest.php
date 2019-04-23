@@ -3,7 +3,7 @@
 namespace Gwleuverink\Lockdown\Tests\Unit;
 
 use Gwleuverink\Lockdown\Tests\TestCase;
-use Gwleuverink\Lockdown\BasicLockFactory;
+use Gwleuverink\Lockdown\LockdownFactory;
 
 class ConfigDriverTest extends TestCase
 {
@@ -14,7 +14,7 @@ class ConfigDriverTest extends TestCase
     {
         parent::setUp();
 
-        $this->factory = $this->app->make(BasicLockFactory::class);
+        $this->factory = $this->app->make(LockdownFactory::class);
     }
 
     /** @test */

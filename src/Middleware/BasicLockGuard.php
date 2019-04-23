@@ -3,7 +3,7 @@
 namespace Gwleuverink\Lockdown\Middleware;
 
 use Closure;
-use Gwleuverink\Lockdown\BasicLockFactory;
+use Gwleuverink\Lockdown\LockdownFactory;
 use Illuminate\Foundation\Application;
 use Gwleuverink\Lockdown\Responses\AccessDeniedResponse;
 
@@ -25,8 +25,8 @@ class BasicLockGuard
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (config('basic-lock.middleware-enabled')) {
-            $lock = $this->app->make(BasicLockFactory::class)->build($request);
+        if (config('lockdown.middleware-enabled')) {
+            $lock = $this->app->make(LockdownFactory::class)->build($request);
 
             if (!$lock->authenticates($guard)) {
                 return new AccessDeniedResponse();

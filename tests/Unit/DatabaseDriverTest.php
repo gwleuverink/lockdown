@@ -4,7 +4,7 @@ namespace Gwleuverink\Lockdown\Tests\Unit;
 
 use Illuminate\Support\Facades\Artisan;
 use Gwleuverink\Lockdown\Tests\TestCase;
-use Gwleuverink\Lockdown\BasicLockFactory;
+use Gwleuverink\Lockdown\LockdownFactory;
 
 class DatabaseDriverTest extends TestCase
 {
@@ -15,10 +15,10 @@ class DatabaseDriverTest extends TestCase
     {
         parent::setUp();
 
-        $this->factory = $this->app->make(BasicLockFactory::class);
+        $this->factory = $this->app->make(LockdownFactory::class);
 
         // Create a database user
-        Artisan::call('basic-lock:create-user', [
+        Artisan::call('lockdown:create-user', [
             'user' => 'admin',
             'password' => 'secret'
         ]);
@@ -26,9 +26,9 @@ class DatabaseDriverTest extends TestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        include_once __DIR__ . '/../../database/migrations/create_basic_lock_users_table.php.stub';
+        include_once __DIR__ . '/../../database/migrations/create_lockdown_users_table.php.stub';
     
-        (new \CreateBasicAuthUsersTable)->up();
+        (new \CreateLockdownUsersTable)->up();
     }
 
 
