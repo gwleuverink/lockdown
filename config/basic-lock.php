@@ -2,10 +2,10 @@
 
 return [
 
-    'middleware-enabled' => env('BASIC_AUTH_ENABLED', true),
+    'middleware-enabled' => env('basic_lock_ENABLED', true),
     'default' => 'config',
     
-    'table' => 'basic_auth_users',
+    'table' => 'basic_lock_users',
 
     /*
     |--------------------------------------------------------------------------

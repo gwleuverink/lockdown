@@ -13,7 +13,7 @@ class CreateBasicAuthUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('basic-auth.table', 'basic_auth_users'), function (Blueprint $table) {
+        Schema::create(config('basic-lock.table', 'basic_lock_users'), function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('group');
             $table->string('user');

@@ -4,7 +4,7 @@ namespace Gwleuverink\Lockdown\Exceptions;
 
 use Exception;
 
-class BasicAuthTableNotFoundException extends Exception 
+class BasicLockUsersTableNotFoundException extends Exception 
 {
     public function __construct ()
     {

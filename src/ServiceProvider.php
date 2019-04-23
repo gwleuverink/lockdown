@@ -15,14 +15,14 @@ class ServiceProvider extends BaseServiceProvider
 
         // Publish config
         $this->publishes([
-             __DIR__ . '/../config/basic-auth.php' => base_path('config/basic-auth.php') 
+             __DIR__ . '/../config/basic-lock.php' => base_path('config/basic-lock.php') 
         ], 'config');
 
         // Publish migrations
         if(! class_exists('CreateBasicAuthUsersTable')) {
             $this->publishes([
-                __DIR__ . '/../database/migrations/create_basic_auth_users_table.php.stub' => 
-                database_path('migrations/' . date('Y_m_d_His', time()) . '_create_basic_auth_users_table.php')
+                __DIR__ . '/../database/migrations/create_basic_lock_users_table.php.stub' => 
+                database_path('migrations/' . date('Y_m_d_His', time()) . '_create_basic_lock_users_table.php')
             ], 'migrations');
         }
         
@@ -31,7 +31,7 @@ class ServiceProvider extends BaseServiceProvider
     public function register()
     {
         // Merge config
-        $this->mergeConfigFrom(__DIR__ . '/../config/basic-auth.php', 'basic-auth');
+        $this->mergeConfigFrom(__DIR__ . '/../config/basic-lock.php', 'basic-lock');
         
         // Register implementations
         $this->app->bind(BasicLockFactory::class, function ($app) {

@@ -22,7 +22,7 @@ class DatabaseDriverTest extends TestCase
     protected function getEnvironmentSetUp($app)
     {
 
-        include_once __DIR__ . '/../../database/migrations/create_basic_auth_users_table.php.stub';
+        include_once __DIR__ . '/../../database/migrations/create_basic_lock_users_table.php.stub';
     
         (new \CreateBasicAuthUsersTable)->up();
     }
@@ -46,7 +46,7 @@ class DatabaseDriverTest extends TestCase
     {
         
         // arrange
-        DB::table(config('basic-auth.table'))->insert([
+        DB::table(config('basic-lock.table'))->insert([
             'group' => 'default',
             'user' => 'admin',
             'password' => Hash::make('secret')
@@ -70,7 +70,7 @@ class DatabaseDriverTest extends TestCase
     public function it_passes_authentication_with_credentials()
     {
         // arrange
-        DB::table(config('basic-auth.table'))->insert([
+        DB::table(config('basic-lock.table'))->insert([
             'group' => 'default',
             'user' => 'admin',
             'password' => Hash::make('secret')

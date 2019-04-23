@@ -62,7 +62,7 @@ class RouteGuardTest extends TestCase
     public function it_returns_ok_response_when_visiting_protected_route_when_middleware_is_disabled()
     {
         // arrange
-        config(['basic-auth.middleware-enabled' => false]);
+        config(['basic-lock.middleware-enabled' => false]);
 
         // act
         $response = $this->get('lockdown/protected');

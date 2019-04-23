@@ -25,6 +25,6 @@ class BasicLockFactory {
 
     private function loadConfig()
     {
-        $this->config = new ConfigRepository($this->app->config->get('basic-auth'));
+        $this->config = new ConfigRepository($this->app->config->get('basic-lock'));
     }
 }

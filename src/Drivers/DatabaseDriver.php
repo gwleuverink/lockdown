@@ -5,7 +5,7 @@ namespace Gwleuverink\Lockdown\Drivers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
-use Gwleuverink\Lockdown\Exceptions\BasicAuthTableNotFoundException;
+use Gwleuverink\Lockdown\Exceptions\BasicLockUsersTableNotFoundException;
 
 class DatabaseDriver extends Driver
 {
@@ -17,17 +17,18 @@ class DatabaseDriver extends Driver
      */
     public function authenticate() : bool
     {
+        // Just do it all in one method, no need to overcomplicate things.
         if (!$this->hasCredentials()) {
             return false;
         }
 
         throw_unless(
-            Schema::hasTable(config('basic-auth.table')),
-            BasicAuthTableNotFoundException::class
+            Schema::hasTable(config('basic-lock.table')),
+            BasicLockUsersTableNotFoundException::class
         );
         
         // Find a user
-        $user = DB::table(config('basic-auth.table'))
+        $user = DB::table(config('basic-lock.table'))
                     ->whereGroup($this->arguments->get('group'))
                     ->whereUser($this->getProvidedUser())
                     ->first();
