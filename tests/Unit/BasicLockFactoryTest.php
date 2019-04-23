@@ -5,10 +5,10 @@ namespace Gwleuverink\Lockdown\Tests\Unit;
 use Gwleuverink\Lockdown\Tests\TestCase;
 use Gwleuverink\Lockdown\BasicLockFactory;
 use Illuminate\Config\Repository as ConfigRepository;
-use Gwleuverink\Lockdown\Contracts\Unlockable;
+use Gwleuverink\Lockdown\BasicLock;
 
-class BasicLockFactoryTest extends TestCase {
-
+class BasicLockFactoryTest extends TestCase
+{
     /** @test */
     public function it_resolves_a_factory_from_the_container()
     {
@@ -28,10 +28,11 @@ class BasicLockFactoryTest extends TestCase {
     public function it_builds_a_lock()
     {
         $factory = $this->app->make(BasicLockFactory::class);
+        
         $lock = $factory->build(
             $this->app->request
         );
 
-        $this->assertInstanceOf(Unlockable::class, $lock);
+        $this->assertInstanceOf(BasicLock::class, $lock);
     }
 }
