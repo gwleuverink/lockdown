@@ -22,7 +22,6 @@ class RouteGuardTest extends TestCase
     {
         // act
         $response = $this->get('lockdown/protected');
-        dump($response->exception);
         
         //assert
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);

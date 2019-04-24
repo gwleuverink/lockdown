@@ -29,7 +29,10 @@
         "laravel": {
             "providers": [
                 "Gwleuverink\\Lockdown\\ServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "lockdown": "Gwleuverink\\Lockdown\\Lockdown"
+            }
         }
     }
 }

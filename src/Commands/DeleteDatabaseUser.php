@@ -39,9 +39,15 @@ class DeleteDatabaseUser extends Command
      */
     public function handle()
     {
-        DB::table(config('lockdown.table'))
-            ->whereGroup($this->argument('group') ?? 'default')
-            ->whereUser($this->argument('user'))
+        $deleted = DB::table(config('lockdown.table'))
+            ->whereGroup($group = $this->argument('group') ?? 'default')
+            ->whereUser($user = $this->argument('user'))
             ->delete();
+
+        if(! $deleted) {
+            return $this->error("User with name `$user` not found in $group group");
+        }
+        
+        $this->info("User with name `$user` deleted from $group group");
     }
 }

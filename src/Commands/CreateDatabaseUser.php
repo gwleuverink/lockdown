@@ -39,10 +39,12 @@ class CreateDatabaseUser extends Command
      */
     public function handle()
     {
-        DB::table(config('lockdown.table'))->insert([
-            'group' => $this->argument('group') ?? 'default',
-            'user' => $this->argument('user'),
+        $created = DB::table(config('lockdown.table'))->insert([
+            'group' => $group = $this->argument('group') ?? 'default',
+            'user' => $user = $this->argument('user'),
             'password' => Hash::make($this->argument('password'))
         ]);
+
+        if($created) $this->info("User with name `$user` created in $group group");
     }
 }

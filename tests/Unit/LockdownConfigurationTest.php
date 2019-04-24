@@ -10,7 +10,7 @@ class LockdownkConfigurationTest extends TestCase
     /** @test */
     public function it_is_valid()
     {
-        $lock = $this->app->make(LockdownFactory::class);
+        $lock = $this->app->lockdown;
 
         $this->assertNotNull($lock->config->get('middleware-enabled'));
         $this->assertNotNull($lock->config->get('default'));

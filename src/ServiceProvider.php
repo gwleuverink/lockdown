@@ -7,6 +7,7 @@ use Gwleuverink\Lockdown\LockdownFactory;
 use Gwleuverink\Lockdown\Middleware\BasicLockGuard;
 use Gwleuverink\Lockdown\Commands\CreateDatabaseUser;
 use Gwleuverink\Lockdown\Commands\DeleteDatabaseUser;
+use Illuminate\Config\Repository as ConfigRepository;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
@@ -42,10 +43,15 @@ class ServiceProvider extends BaseServiceProvider
     {
         // Merge config
         $this->mergeConfigFrom(__DIR__ . '/../config/lockdown.php', 'lockdown');
-        
+
         // Register implementations
-        $this->app->bind(LockdownFactory::class, function ($app) {
-            return new LockdownFactory($app);
+        $this->app->singleton('lockdown', function($app) {
+            return new Lockdown($app->request, $this->getLockdownConfig());
         });
+    }
+
+    private function getLockdownConfig()
+    {
+        return new ConfigRepository($this->app->config->get('lockdown'));
     }
 }

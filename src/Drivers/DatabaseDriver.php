@@ -5,7 +5,8 @@ namespace Gwleuverink\Lockdown\Drivers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
-use Gwleuverink\Lockdown\Exceptions\BasicLockUsersTableNotFoundException;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use Gwleuverink\Lockdown\Exceptions\LockdownUsersTableNotFound;
 
 class DatabaseDriver extends Driver
 {
@@ -18,13 +19,15 @@ class DatabaseDriver extends Driver
     public function authenticate() : bool
     {
         // Just do it all in one method, no need to overcomplicate things.
-        if (!$this->hasCredentials()) {
-            return false;
-        }
+        throw_unless(
+            $this->hasCredentials(),
+            UnauthorizedHttpException::class,
+            'Basic'
+        );
 
         throw_unless(
             Schema::hasTable(config('lockdown.table')),
-            BasicLockUsersTableNotFoundException::class
+            LockdownUsersTableNotFound::class
         );
         
         // Find a user
@@ -33,11 +36,15 @@ class DatabaseDriver extends Driver
                     ->whereUser($this->getProvidedUser())
                     ->first();
 
-        if (! $user) {
-            return false;
-        }
+        $passes = $user && Hash::check($this->getProvidedPassword(), $user->password);
+
+        throw_unless(
+            $passes,
+            UnauthorizedHttpException::class,
+            'Basic'
+        );
 
         // Check the password
-        return Hash::check($this->getProvidedPassword(), $user->password);
+        return true;
     }
 }

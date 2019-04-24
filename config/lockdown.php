@@ -5,7 +5,7 @@ return [
     'middleware-enabled' => env('LOCKDOWN_ENABLED', true),
     'default' => 'config',
     
-    'table' => 'basic_lock_users',
+    'table' => 'basic_auth_users',
 
     /*
     |--------------------------------------------------------------------------

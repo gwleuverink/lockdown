@@ -4,7 +4,7 @@ namespace Gwleuverink\Lockdown\Exceptions;
 
 use Exception;
 
-class LockdownUsersTableNotFoundException extends Exception
+class LockdownUsersTableNotFound extends Exception
 {
     public function __construct()
     {
