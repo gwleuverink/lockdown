@@ -2,7 +2,6 @@
 
 namespace Gwleuverink\Lockdown\Drivers;
 
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
