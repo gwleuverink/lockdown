@@ -30,10 +30,19 @@ abstract class Driver implements DriverContract
         $this->arguments = new Collection($arguments);
     }
 
-    final public function verifyRequest()
+
+    /**
+     * Wrapper method for the driver's passesAuthentication() method
+     * This method is called by Lockdown to verify authentication
+     * against the configured guard.
+     *
+     * @throws UnauthorizedHttpException
+     * @return bool
+     */
+    final public function verifyRequest() : bool
     {
         if (! config('lockdown.middleware-enabled')) {
-            return;
+            return true;
         }
 
         throw_unless(
@@ -53,6 +62,7 @@ abstract class Driver implements DriverContract
         return $passes;
     }
 
+    
     /**
      * Fetch the user entry from the request
      *

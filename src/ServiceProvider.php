@@ -38,6 +38,7 @@ class ServiceProvider extends BaseServiceProvider
         }
     }
 
+    
     public function register()
     {
         // Merge config

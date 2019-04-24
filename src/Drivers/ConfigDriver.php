@@ -10,7 +10,6 @@ class ConfigDriver extends Driver
      * Check if current request passes the
      * BasicLock authentication guard
      *
-     * @throws UnauthorizedHttpException
      * @return boolean
      */
     public function passesAuthentication() : bool

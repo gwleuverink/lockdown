@@ -14,6 +14,7 @@ class DatabaseDriver extends Driver
      * Check if current request passes the
      * BasicLock authentication guard
      *
+     * @throws LockdownUsersTableNotFound
      * @return boolean
      */
     public function passesAuthentication() : bool

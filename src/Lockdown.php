@@ -23,11 +23,13 @@ class Lockdown
      */
     public $config;
 
+    
     public function __construct(Request $request, ConfigRepository $config)
     {
         $this->request = $request;
         $this->config = $config;
     }
+
 
     /**
      * Spin up a new driver and verify the request
@@ -41,6 +43,7 @@ class Lockdown
 
         return $driver->verifyRequest();
     }
+
 
     /**
      * Get the current guard section from the config
