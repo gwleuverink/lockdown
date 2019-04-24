@@ -4,10 +4,10 @@ namespace Gwleuverink\Lockdown;
 
 use Illuminate\Http\Request;
 use Illuminate\Config\Repository as ConfigRepository;
-use Gwleuverink\Lockdown\Exceptions\DriverNotFoundException;
+use Gwleuverink\Lockdown\Exceptions\LockdownDriverNotFound;
 use Gwleuverink\Lockdown\Contracts\DriverContract;
 
-class BasicLock
+class Lockdown
 {
     /**
      * The current request instance
@@ -21,7 +21,7 @@ class BasicLock
      *
      * @var ConfigRepository
      */
-    protected $config;
+    public $config;
 
     public function __construct(Request $request, ConfigRepository $config)
     {
@@ -56,7 +56,7 @@ class BasicLock
     private function getDriver($driver, $arguments = null) : DriverContract
     {
         if (! class_exists($driver)) {
-            throw new DriverNotFoundException($driver);
+            throw new LockdownDriverNotFound($driver);
         }
 
         return new $driver($this->request, $arguments);

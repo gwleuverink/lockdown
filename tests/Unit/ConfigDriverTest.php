@@ -3,31 +3,20 @@
 namespace Gwleuverink\Lockdown\Tests\Unit;
 
 use Gwleuverink\Lockdown\Tests\TestCase;
-use Gwleuverink\Lockdown\BasicLockFactory;
+use Gwleuverink\Lockdown\LockdownFactory;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class ConfigDriverTest extends TestCase
 {
     const DRIVER = 'config';
-    private $factory;
 
-    public function setUp() : void
-    {
-        parent::setUp();
-
-        $this->factory = $this->app->make(BasicLockFactory::class);
-    }
 
     /** @test */
     public function it_does_not_pass_authentication_without_credentials()
     {
-        // arrange
-        $lock = $this->factory->build($this->app->request);
-
         // act
-        $authenticates = $lock->authenticates(self::DRIVER);
-
-        // assert
-        $this->assertFalse($authenticates);
+        $this->expectException(UnauthorizedHttpException::class);
+        $this->app->lockdown->authenticates(self::DRIVER);
     }
 
     /** @test */
@@ -39,13 +28,9 @@ class ConfigDriverTest extends TestCase
             'PHP_AUTH_PW' => 'wrong_password'
         ]);
 
-        $lock = $this->factory->build($this->app->request);
-
         // act
-        $authenticates = $lock->authenticates(self::DRIVER);
-
-        // assert
-        $this->assertFalse($authenticates);
+        $this->expectException(UnauthorizedHttpException::class);
+        $this->app->lockdown->authenticates(self::DRIVER);
     }
 
     /** @test */
@@ -56,10 +41,9 @@ class ConfigDriverTest extends TestCase
             'PHP_AUTH_USER' => 'admin',
             'PHP_AUTH_PW' => 'secret'
         ]);
-        $lock = $this->factory->build($this->app->request);
-
+     
         // act
-        $authenticates = $lock->authenticates(self::DRIVER);
+        $authenticates = $this->app->lockdown->authenticates(self::DRIVER);
 
         // assert
         $this->assertTrue($authenticates);

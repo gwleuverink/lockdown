@@ -12,7 +12,7 @@ class RouteGuardTest extends TestCase
     {
         parent::setUp();
         Route::get('lockdown/protected', function () {
-        })->middleware('basic-lock');
+        })->middleware('lockdown');
         Route::get('lockdown/unprotected', function () {
         });
     }
@@ -64,7 +64,7 @@ class RouteGuardTest extends TestCase
     public function it_returns_ok_response_when_visiting_protected_route_when_middleware_is_disabled()
     {
         // arrange
-        config(['basic-lock.middleware-enabled' => false]);
+        config(['lockdown.middleware-enabled' => false]);
 
         // act
         $response = $this->get('lockdown/protected');
