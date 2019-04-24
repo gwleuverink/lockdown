@@ -29,31 +29,27 @@ class Lockdown
         $this->config = $config;
     }
 
+    /**
+     * Spin up a new driver and verify the request
+     *
+     * @param string $guardName
+     * @return bool
+     */
     public function verifyRequest($guardName)
     {
-        // TODO: Extract to driver factory
-        $guardName = $guardName ?? $this->config->get('default');
-        $guard = (object) $this->config->get("guards.$guardName");
-        $driverFqcn = sprintf('\\%s\\Drivers\\%sDriver', __NAMESPACE__, ucfirst($guard->driver));
-        $passes =  $this->getDriver($driverFqcn, $guard->arguments ?? null)->verifyRequest();
+        $driver = (new DriverFactory($this->request, $this->getGuard()))->build();
 
-        return $passes;
+        return $driver->verifyRequest();
     }
 
     /**
-     * Build a driver instance
+     * Get the current guard section from the config
      *
-     * @param string $driver
-     * @param object $arguments
-     * @return DriverContract
+     * @return object
      */
-    private function getDriver($driver, $arguments = null) : DriverContract
+    private function getGuard()
     {
-        // TODO: maybe this should live in a factory
-        if (! class_exists($driver)) {
-            throw new LockdownDriverNotFound($driver);
-        }
-
-        return new $driver($this->request, $arguments);
+        $guardName = $guardName ?? $this->config->get('default');
+        return (object) $this->config->get("guards.$guardName");
     }
 }

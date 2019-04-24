@@ -3,9 +3,8 @@
 namespace Gwleuverink\Lockdown\Tests\Unit;
 
 use Gwleuverink\Lockdown\Tests\TestCase;
-use Gwleuverink\Lockdown\LockdownFactory;
 
-class LockdownkConfigurationTest extends TestCase
+class ConfigurationTest extends TestCase
 {
     /** @test */
     public function it_is_valid()
