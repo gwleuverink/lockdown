@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Gwleuverink\Lockdown\Exceptions\LockdownDriverNotFound;
 use Gwleuverink\Lockdown\Drivers\Driver;
 
-class DriverFactory {
-
+class DriverFactory
+{
     private $request;
     private $guard;
 
