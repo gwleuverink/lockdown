@@ -44,7 +44,7 @@ class DeleteDatabaseUser extends Command
             ->whereUser($user = $this->argument('user'))
             ->delete();
 
-        if(! $deleted) {
+        if (! $deleted) {
             return $this->error("User with name `$user` not found in $group group");
         }
         

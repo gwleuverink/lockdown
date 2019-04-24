@@ -30,20 +30,24 @@ abstract class Driver implements DriverContract
         $this->arguments = new Collection($arguments);
     }
 
-    public final function verifyRequest()
+    final public function verifyRequest()
     {
-        if(! config('lockdown.middleware-enabled')) return;
+        if (! config('lockdown.middleware-enabled')) {
+            return;
+        }
 
         throw_unless(
             $this->hasCredentials(),
             UnauthorizedHttpException::class,
-            'Basic', 'Invalid Credentials'
+            'Basic',
+            'Invalid Credentials'
         );
 
         throw_unless(
             $passes =  $this->passesAuthentication(),
             UnauthorizedHttpException::class,
-            'Basic', 'Invalid credentials.'
+            'Basic',
+            'Invalid credentials.'
         );
 
         return $passes;

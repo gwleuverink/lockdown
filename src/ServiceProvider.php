@@ -44,7 +44,7 @@ class ServiceProvider extends BaseServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/lockdown.php', 'lockdown');
 
         // Register implementations
-        $this->app->singleton('lockdown', function($app) {
+        $this->app->singleton('lockdown', function ($app) {
             return new Lockdown($app->request, $this->getLockdownConfig());
         });
     }

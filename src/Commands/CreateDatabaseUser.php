@@ -45,6 +45,8 @@ class CreateDatabaseUser extends Command
             'password' => Hash::make($this->argument('password'))
         ]);
 
-        if($created) $this->info("User with name `$user` created in $group group");
+        if ($created) {
+            $this->info("User with name `$user` created in $group group");
+        }
     }
 }
