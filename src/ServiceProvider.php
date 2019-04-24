@@ -2,13 +2,12 @@
 
 namespace Gwleuverink\Lockdown;
 
-use Gwleuverink\Lockdown\Lockdown;
-use Gwleuverink\Lockdown\LockdownFactory;
-use Gwleuverink\Lockdown\Middleware\BasicLockGuard;
-use Gwleuverink\Lockdown\Commands\CreateDatabaseUser;
-use Gwleuverink\Lockdown\Commands\DeleteDatabaseUser;
-use Illuminate\Config\Repository as ConfigRepository;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Illuminate\Config\Repository as ConfigRepository;
+use Gwleuverink\Lockdown\Middleware\BasicLockGuard;
+use Gwleuverink\Lockdown\Lockdown;
+use Gwleuverink\Lockdown\Commands\DeleteDatabaseUser;
+use Gwleuverink\Lockdown\Commands\CreateDatabaseUser;
 
 class ServiceProvider extends BaseServiceProvider
 {

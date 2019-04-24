@@ -13,24 +13,12 @@ class ConfigDriver extends Driver
      * @throws UnauthorizedHttpException
      * @return boolean
      */
-    public function authenticate() : bool
+    public function passesAuthentication() : bool
     {
-        throw_unless(
-            $this->hasCredentials(),
-            UnauthorizedHttpException::class,
-            'Basic'
-        );
-
         $passes = $this->arguments->filter(function ($authenticatable) {
             return $authenticatable['user'] === $this->getProvidedUser() &&
                    $authenticatable['password'] === $this->getProvidedPassword();
         })->isNotEmpty();
-
-        throw_unless(
-            $passes,
-            UnauthorizedHttpException::class,
-            'Basic'
-        );
 
         return $passes;
     }

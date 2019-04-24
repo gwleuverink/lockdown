@@ -29,21 +29,15 @@ class Lockdown
         $this->config = $config;
     }
 
-    /**
-     * Check if current request passes the
-     * BasicLock authentication guard
-     *
-     * @param string $guardName
-     * @return boolean
-     */
-    public function authenticates($guardName) : bool
+    public function verifyRequest($guardName)
     {
+        // TODO: Extract to driver factory
         $guardName = $guardName ?? $this->config->get('default');
-
         $guard = (object) $this->config->get("guards.$guardName");
         $driverFqcn = sprintf('\\%s\\Drivers\\%sDriver', __NAMESPACE__, ucfirst($guard->driver));
+        $passes =  $this->getDriver($driverFqcn, $guard->arguments ?? null)->verifyRequest();
 
-        return $this->getDriver($driverFqcn, $guard->arguments ?? null)->authenticate();
+        return $passes;
     }
 
     /**
@@ -55,6 +49,7 @@ class Lockdown
      */
     private function getDriver($driver, $arguments = null) : DriverContract
     {
+        // TODO: maybe this should live in a factory
         if (! class_exists($driver)) {
             throw new LockdownDriverNotFound($driver);
         }

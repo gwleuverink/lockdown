@@ -2,9 +2,9 @@
 
 namespace Gwleuverink\Lockdown\Tests\Unit;
 
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Gwleuverink\Lockdown\Tests\TestCase;
 use Gwleuverink\Lockdown\LockdownFactory;
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class ConfigDriverTest extends TestCase
 {
@@ -16,7 +16,7 @@ class ConfigDriverTest extends TestCase
     {
         // act
         $this->expectException(UnauthorizedHttpException::class);
-        $this->app->lockdown->authenticates(self::DRIVER);
+        $this->app->lockdown->verifyRequest(self::DRIVER);
     }
 
     /** @test */
@@ -30,7 +30,7 @@ class ConfigDriverTest extends TestCase
 
         // act
         $this->expectException(UnauthorizedHttpException::class);
-        $this->app->lockdown->authenticates(self::DRIVER);
+        $this->app->lockdown->verifyRequest(self::DRIVER);
     }
 
     /** @test */
@@ -43,7 +43,7 @@ class ConfigDriverTest extends TestCase
         ]);
      
         // act
-        $authenticates = $this->app->lockdown->authenticates(self::DRIVER);
+        $authenticates = $this->app->lockdown->verifyRequest(self::DRIVER);
 
         // assert
         $this->assertTrue($authenticates);

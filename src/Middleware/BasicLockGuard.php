@@ -2,11 +2,11 @@
 
 namespace Gwleuverink\Lockdown\Middleware;
 
-use Closure;
-use Illuminate\Foundation\Application;
-use Gwleuverink\Lockdown\LockdownFactory;
-use Gwleuverink\Lockdown\Responses\AccessDeniedResponse;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use Illuminate\Foundation\Application;
+use Gwleuverink\Lockdown\Responses\AccessDeniedResponse;
+use Gwleuverink\Lockdown\LockdownFactory;
+use Closure;
 
 class BasicLockGuard
 {
@@ -26,10 +26,7 @@ class BasicLockGuard
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (config('lockdown.middleware-enabled')) {
-            
-            $this->app->lockdown->authenticates($guard);
-        }
+        $this->app->lockdown->verifyRequest($guard);
         
         return $next($request);
     }

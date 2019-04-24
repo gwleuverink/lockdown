@@ -2,9 +2,9 @@
 
 namespace Gwleuverink\Lockdown\Tests;
 
-use Gwleuverink\Lockdown\Lockdown;
-use Gwleuverink\Lockdown\ServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Gwleuverink\Lockdown\ServiceProvider;
+use Gwleuverink\Lockdown\Lockdown;
 
 class TestCase extends BaseTestCase
 {

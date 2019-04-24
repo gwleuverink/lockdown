@@ -2,8 +2,9 @@
 
 namespace Gwleuverink\Lockdown\Drivers;
 
-use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Illuminate\Support\Collection;
+use Illuminate\Http\Request;
 use Gwleuverink\Lockdown\Contracts\DriverContract;
 
 abstract class Driver implements DriverContract
@@ -29,6 +30,24 @@ abstract class Driver implements DriverContract
         $this->arguments = new Collection($arguments);
     }
 
+    public final function verifyRequest()
+    {
+        if(! config('lockdown.middleware-enabled')) return;
+
+        throw_unless(
+            $this->hasCredentials(),
+            UnauthorizedHttpException::class,
+            'Basic', 'Invalid Credentials'
+        );
+
+        throw_unless(
+            $passes =  $this->passesAuthentication(),
+            UnauthorizedHttpException::class,
+            'Basic', 'Invalid credentials.'
+        );
+
+        return $passes;
+    }
 
     /**
      * Fetch the user entry from the request

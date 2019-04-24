@@ -2,8 +2,8 @@
 
 namespace Gwleuverink\Lockdown\Tests\Feature;
 
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Response;
 use Gwleuverink\Lockdown\Tests\TestCase;
 
 class RouteGuardTest extends TestCase
@@ -12,8 +12,10 @@ class RouteGuardTest extends TestCase
     {
         parent::setUp();
         Route::get('lockdown/protected', function () {
+            //
         })->middleware('lockdown');
         Route::get('lockdown/unprotected', function () {
+            //
         });
     }
 
