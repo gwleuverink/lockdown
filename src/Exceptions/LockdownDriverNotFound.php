@@ -4,7 +4,7 @@ namespace Gwleuverink\Lockdown\Exceptions;
 
 use Exception;
 
-class DriverNotFoundException extends Exception
+class LockdownDriverNotFound extends Exception
 {
     public function __construct($className)
     {

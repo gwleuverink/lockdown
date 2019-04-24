@@ -13,7 +13,7 @@ class DatabaseUserCommandTest extends TestCase
         parent::setUp();
         
         // Create a database user
-        Artisan::call('basic-lock:create-user', [
+        Artisan::call('lockdown:create-user', [
             'user' => 'tester',
             'password' => 'secret',
             'group' => 'testing'
@@ -22,15 +22,15 @@ class DatabaseUserCommandTest extends TestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        include_once __DIR__ . '/../../database/migrations/create_basic_lock_users_table.php.stub';
+        include_once __DIR__ . '/../../database/migrations/create_lockdown_users_table.php.stub';
 
-        (new \CreateBasicAuthUsersTable)->up();
+        (new \CreateLockdownUsersTable)->up();
     }
 
     /** @test */
     public function it_creates_a_basic_lock_user_record()
     {
-        $users = DB::table(config('basic-lock.table'))
+        $users = DB::table(config('lockdown.table'))
             ->whereGroup('testing')
             ->whereUser('tester')
             ->get();
@@ -41,12 +41,12 @@ class DatabaseUserCommandTest extends TestCase
     /** @test */
     public function it_deletes_a_basic_lock_user_record()
     {
-        Artisan::call('basic-lock:delete-user', [
+        Artisan::call('lockdown:delete-user', [
             'user' => 'tester',
             'group' => 'testing'
         ]);
 
-        $users = DB::table(config('basic-lock.table'))
+        $users = DB::table(config('lockdown.table'))
             ->whereGroup('testing')
             ->whereUser('admin')
             ->get();

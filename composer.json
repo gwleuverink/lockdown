@@ -1,5 +1,5 @@
 {
-    "name": "gwleuverink/lockdown",
+    "name": "gwleuverink/laravel-lockdown",
     "description": "Easily lock sections of your Laravel app with Basic Access Authentication using convenient route middleware & configurable guards",
     "type": "library",
     "license": "MIT",
@@ -13,7 +13,8 @@
     "require": {},
     "require-dev": {
         "phpunit/phpunit": "^8.1",
-        "orchestra/testbench": "~3.0"
+        "orchestra/testbench": "~3.0",
+        "codedungeon/phpunit-result-printer": "^0.26.2"
     },
     "autoload": {
         "psr-4": {
@@ -29,7 +30,10 @@
         "laravel": {
             "providers": [
                 "Gwleuverink\\Lockdown\\ServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "lockdown": "Gwleuverink\\Lockdown\\Lockdown"
+            }
         }
     }
 }

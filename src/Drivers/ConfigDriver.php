@@ -2,6 +2,8 @@
 
 namespace Gwleuverink\Lockdown\Drivers;
 
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+
 class ConfigDriver extends Driver
 {
     /**
@@ -10,12 +12,8 @@ class ConfigDriver extends Driver
      *
      * @return boolean
      */
-    public function authenticate() : bool
+    public function passesAuthentication() : bool
     {
-        if (!$this->hasCredentials()) {
-            return false;
-        }
-
         $passes = $this->arguments->filter(function ($authenticatable) {
             return $authenticatable['user'] === $this->getProvidedUser() &&
                    $authenticatable['password'] === $this->getProvidedPassword();

@@ -14,5 +14,5 @@ interface DriverContract
      *
      * @return boolean
      */
-    public function authenticate() : bool;
+    public function passesAuthentication() : bool;
 }

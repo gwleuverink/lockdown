@@ -2,8 +2,9 @@
 
 namespace Gwleuverink\Lockdown\Drivers;
 
-use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Illuminate\Support\Collection;
+use Illuminate\Http\Request;
 use Gwleuverink\Lockdown\Contracts\DriverContract;
 
 abstract class Driver implements DriverContract
@@ -30,6 +31,38 @@ abstract class Driver implements DriverContract
     }
 
 
+    /**
+     * Wrapper method for the driver's passesAuthentication() method
+     * This method is called by Lockdown to verify authentication
+     * against the configured guard.
+     *
+     * @throws UnauthorizedHttpException
+     * @return bool
+     */
+    final public function verifyRequest() : bool
+    {
+        if (! config('lockdown.middleware-enabled')) {
+            return true;
+        }
+
+        throw_unless(
+            $this->hasCredentials(),
+            UnauthorizedHttpException::class,
+            'Basic',
+            'Invalid Credentials'
+        );
+
+        throw_unless(
+            $passes =  $this->passesAuthentication(),
+            UnauthorizedHttpException::class,
+            'Basic',
+            'Invalid credentials.'
+        );
+
+        return $passes;
+    }
+
+    
     /**
      * Fetch the user entry from the request
      *

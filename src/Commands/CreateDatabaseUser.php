@@ -13,7 +13,7 @@ class CreateDatabaseUser extends Command
      *
      * @var string
      */
-    protected $signature = 'basic-lock:create-user {user} {password} {group?}';
+    protected $signature = 'lockdown:create-user {user} {password} {group?}';
 
     /**
      * The console command description.
@@ -39,10 +39,14 @@ class CreateDatabaseUser extends Command
      */
     public function handle()
     {
-        DB::table(config('basic-lock.table'))->insert([
-            'group' => $this->argument('group') ?? 'default',
-            'user' => $this->argument('user'),
+        $created = DB::table(config('lockdown.table'))->insert([
+            'group' => $group = $this->argument('group') ?? 'default',
+            'user' => $user = $this->argument('user'),
             'password' => Hash::make($this->argument('password'))
         ]);
+
+        if ($created) {
+            $this->info("User with name `$user` created in $group group");
+        }
     }
 }
