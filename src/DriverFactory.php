@@ -17,7 +17,6 @@ class DriverFactory
         $this->guard = $guard;
     }
 
-
     /**
      * Create a Driver instance
      *
@@ -25,16 +24,23 @@ class DriverFactory
      */
     public function build() : Driver
     {
-        $driver = $this->resolveDriverPath();
+        $driver = $this->guard->driver;
         $arguments = $this->resolveDriverArguments();
 
-        if (! class_exists($driver)) {
-            throw new LockdownDriverNotFound($driver);
+        // if passed driver is a class it means it is a custom driver
+        if (class_exists($driver)) {
+            return new $driver($this->request, $arguments);
         }
 
-        return new $driver($this->request, $arguments);
-    }
+        // Not a custom driver. Check if the configured vendor driver exists
+        $driver = $this->resolveDriverPath();
+        if (class_exists($driver)) {
+            return new $driver($this->request, $arguments);
+        }
 
+        // Well that doesn't work now does it
+        throw new LockdownDriverNotFound($driver);
+    }
 
     /**
      * Resolves the driver's path from the guard
@@ -46,7 +52,6 @@ class DriverFactory
         return sprintf('\\%s\\Drivers\\%sDriver', __NAMESPACE__, ucfirst($this->guard->driver));
     }
 
-    
     /**
      * Resolves the driver's arguments from the guard
      *
