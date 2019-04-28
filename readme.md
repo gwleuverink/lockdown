@@ -4,7 +4,7 @@ Easily lock sections of your Laravel app with Basic Access Authentication using 
 ## A note on security
 Lockdown is meant to shield sections of your project from prying eyes, for example if you like to demo a feature that is not ready for production.
 
-Basic Acces Auth is insecure by nature. If in production always make sure to have TLS configured so all credentials are encrypted. Even with that precoution I heavily discourage you use this package to protect valuable data. It is not meant to do that. 
+Basic Acces Auth is insecure by nature. If in production always make sure to have TLS configured so all credentials are encrypted. Even with that precaution I heavily discourage you use this package to protect valuable data. It is not meant to do that. 
 
 That said there are plenty of situations where a easily configurable Basic Access Auth middleware is exactly what you need. If you find yourself in one of those situations, read on! This package is what you need.
 
@@ -94,6 +94,7 @@ You can configure as many guards you like. A guard acts as a group of user crede
 Out of the box you can make use of the config driver and the database driver. Inside of the config file you can define as many guards you like to create different groups of users to check the middleware against.
 
 **The config driver**
+
 When using the config driver, simply store users inside of the config file. This file should be checked in to version control. This is the easiest driver to get started with. If you don't want to have credentials inside of the config file, which I can imagine, use the database driver instead.
 
 Let's say you want to create an additional guard with the name 'my-custom-guard' using the config driver:
@@ -111,7 +112,12 @@ Let's say you want to create an additional guard with the name 'my-custom-guard'
 ```
 
 **The database driver**
+
 The database driver stores all your users in the database. Passwords are hashed so it's a little more secure.
+
+Before you can do anythin you need to publish lockdown's migration file and migrate the database:
+
+`php artisan vendor:publish --tag="lockdown:migrations"` & `php artisan migrate`
 
 Same as the config driver you can create as many guards to check against as many groups of users you'd like.
 
