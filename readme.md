@@ -93,7 +93,7 @@ You can configure as many guards you like. A guard acts as a group of user crede
 
 Out of the box you can make use of the config driver and the database driver. Inside of the config file you can define as many guards you like to create different groups of users to check the middleware against.
 
-**The config driver**
+### The config driver
 
 When using the config driver, simply store users inside of the config file. This file should be checked in to version control. This is the easiest driver to get started with. If you don't want to have credentials inside of the config file, which I can imagine, use the database driver instead.
 
@@ -111,7 +111,7 @@ Let's say you want to create an additional guard with the name 'my-custom-guard'
 ],
 ```
 
-**The database driver**
+### The database driver
 
 The database driver stores all your users in the database. Passwords are hashed so it's a little more secure.
 
