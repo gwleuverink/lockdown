@@ -23,13 +23,11 @@ abstract class Driver implements DriverContract
      */
     protected $arguments;
 
-
     public function __construct(Request $request, $arguments)
     {
         $this->request = $request;
         $this->arguments = new Collection($arguments);
     }
-
 
     /**
      * Wrapper method for the driver's passesAuthentication() method
@@ -41,10 +39,6 @@ abstract class Driver implements DriverContract
      */
     final public function verifyRequest() : bool
     {
-        if (! config('lockdown.middleware-enabled')) {
-            return true;
-        }
-
         throw_unless(
             $this->hasCredentials(),
             UnauthorizedHttpException::class,
@@ -53,7 +47,7 @@ abstract class Driver implements DriverContract
         );
 
         throw_unless(
-            $passes =  $this->passesAuthentication(),
+            $passes = $this->passesAuthentication(),
             UnauthorizedHttpException::class,
             'Basic',
             'Invalid credentials.'
@@ -62,7 +56,6 @@ abstract class Driver implements DriverContract
         return $passes;
     }
 
-    
     /**
      * Fetch the user entry from the request
      *
@@ -72,7 +65,6 @@ abstract class Driver implements DriverContract
     {
         return $this->request->server->get('PHP_AUTH_USER');
     }
-
 
     /**
      * Fetch the password entry from the request
@@ -84,7 +76,6 @@ abstract class Driver implements DriverContract
         return $this->request->server->get('PHP_AUTH_PW');
     }
 
-    
     /**
      * Checks if the the current request has
      * both user and password fields filled

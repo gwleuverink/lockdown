@@ -2,8 +2,6 @@
 
 namespace Gwleuverink\Lockdown\Drivers;
 
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
-
 class ConfigDriver extends Driver
 {
     /**

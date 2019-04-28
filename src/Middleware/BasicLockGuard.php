@@ -26,8 +26,10 @@ class BasicLockGuard
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        $this->app->lockdown->verifyRequest($guard);
-        
+        if (config('lockdown.middleware-enabled')) {
+            $this->app->lockdown->verifyRequest($guard);
+        }
+
         return $next($request);
     }
 }
