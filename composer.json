@@ -6,13 +6,21 @@
     "authors": [
         {
             "name": "Willem Leuverink",
-            "email": "willem@leuver.ink"
+            "email": "willem@leuver.ink",
+            "homepage": "https://leuver.ink",
+            "role": "Developer"
         }
     ],
     "minimum-stability": "stable",
-    "require": {},
+    "require": {
+        "php": "^7.1.3",
+        "illuminate/console": "5.7.* || 5.8.*",
+        "illuminate/http": "5.7.* || 5.8.*",
+        "illuminate/routing": "5.7.* || 5.8.*",
+        "illuminate/support": "5.7.* || 5.8.*"
+    },
     "require-dev": {
-        "phpunit/phpunit": "^8.1",
+        "phpunit/phpunit": "^8.0",
         "orchestra/testbench": "~3.0",
         "codedungeon/phpunit-result-printer": "^0.26.2"
     },
