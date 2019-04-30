@@ -2,8 +2,8 @@
 
 namespace Gwleuverink\Lockdown\Tests\Feature;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Route;
 use Gwleuverink\Lockdown\Tests\TestCase;
 
 class RouteGuardTest extends TestCase
@@ -24,12 +24,11 @@ class RouteGuardTest extends TestCase
     {
         // act
         $response = $this->get('lockdown/protected');
-        
+
         //assert
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
         $response->assertHeader('WWW-Authenticate');
     }
-
 
     /** @test */
     public function it_returns_ok_response_when_visiting_unprotected_route()
@@ -51,7 +50,7 @@ class RouteGuardTest extends TestCase
         // When using the authorisation header with a token.
         $this->withServerVariables([
             'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW' => 'secret'
+            'PHP_AUTH_PW' => 'secret',
         ]);
 
         // act

@@ -2,9 +2,8 @@
 
 namespace Gwleuverink\Lockdown;
 
-use Illuminate\Http\Request;
-use Gwleuverink\Lockdown\Exceptions\LockdownDriverNotFound;
 use Gwleuverink\Lockdown\Drivers\Driver;
+use Gwleuverink\Lockdown\Exceptions\LockdownDriverNotFound;
 
 class DriverFactory
 {
@@ -16,7 +15,7 @@ class DriverFactory
     }
 
     /**
-     * Create a Driver instance
+     * Create a Driver instance.
      *
      * @return \Gwleuverink\Lockdown\Drivers\Driver
      */
@@ -24,12 +23,12 @@ class DriverFactory
     {
         $driver = $this->guard->driver;
         $arguments = $this->resolveDriverArguments();
-        
+
         // if passed driver is a class it means it is a custom driver
         if (class_exists($driver)) {
             return new $driver($arguments);
         }
-        
+
         // Not a custom driver. Check if the configured vendor driver exists
         $driver = $this->resolveDriverPath();
         if (class_exists($driver)) {
@@ -41,7 +40,7 @@ class DriverFactory
     }
 
     /**
-     * Resolves the driver's path from the guard
+     * Resolves the driver's path from the guard.
      *
      * @return string
      */
@@ -51,7 +50,7 @@ class DriverFactory
     }
 
     /**
-     * Resolves the driver's arguments from the guard
+     * Resolves the driver's arguments from the guard.
      *
      * @return void
      */

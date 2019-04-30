@@ -4,7 +4,7 @@ return [
 
     'middleware-enabled' => env('LOCKDOWN_ENABLED', true),
     'default' => 'config',
-    
+
     'table' => 'basic_auth_users',
 
     /*
@@ -24,14 +24,14 @@ return [
                 [
                     'user' => 'admin',
                     'password' => 'secret',
-                ]
-            ]
+                ],
+            ],
         ],
         'database' => [
             'driver' => 'database',
             'arguments' => [
-                'group' => 'default'
-            ]
-        ]
-    ]
+                'group' => 'default',
+            ],
+        ],
+    ],
 ];
