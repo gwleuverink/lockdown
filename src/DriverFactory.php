@@ -29,7 +29,6 @@ class DriverFactory
             return new $driver($arguments);
         }
 
-
         // If not a Lockdown driver it means it is a custom driver
         $driver = $this->guard->driver;
         if (class_exists($driver)) {
