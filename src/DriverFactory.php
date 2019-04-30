@@ -8,12 +8,10 @@ use Gwleuverink\Lockdown\Drivers\Driver;
 
 class DriverFactory
 {
-    private $request;
     private $guard;
 
-    public function __construct(Request $request, object $guard)
+    public function __construct(object $guard)
     {
-        $this->request = $request;
         $this->guard = $guard;
     }
 
@@ -26,16 +24,16 @@ class DriverFactory
     {
         $driver = $this->guard->driver;
         $arguments = $this->resolveDriverArguments();
-
+        
         // if passed driver is a class it means it is a custom driver
         if (class_exists($driver)) {
-            return new $driver($this->request, $arguments);
+            return new $driver($arguments);
         }
-
+        
         // Not a custom driver. Check if the configured vendor driver exists
         $driver = $this->resolveDriverPath();
         if (class_exists($driver)) {
-            return new $driver($this->request, $arguments);
+            return new $driver($arguments);
         }
 
         // Well that doesn't work now does it

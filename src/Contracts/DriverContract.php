@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 interface DriverContract
 {
-    public function __construct(Request $request, $arguments);
+    public function __construct($arguments);
     
     /**
      * Check if current request passes the
@@ -14,5 +14,5 @@ interface DriverContract
      *
      * @return boolean
      */
-    public function passesAuthentication() : bool;
+    public function passesAuthentication($user, $password) : bool;
 }

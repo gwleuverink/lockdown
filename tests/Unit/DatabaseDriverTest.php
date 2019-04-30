@@ -3,9 +3,11 @@
 namespace Gwleuverink\Lockdown\Tests\Unit;
 
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Artisan;
 use Gwleuverink\Lockdown\Tests\TestCase;
 use Gwleuverink\Lockdown\LockdownFactory;
+use Gwleuverink\Lockdown\Exceptions\LockdownUsersTableNotFound;
 
 class DatabaseDriverTest extends TestCase
 {
@@ -17,8 +19,8 @@ class DatabaseDriverTest extends TestCase
 
         // Create a database user
         Artisan::call('lockdown:create-user', [
-            'user' => 'admin',
-            'password' => 'secret'
+            'user' => 'dbadmin',
+            'password' => 'dbsecret'
         ]);
     }
 
@@ -57,8 +59,8 @@ class DatabaseDriverTest extends TestCase
     {
         // arrange
         $this->app->request->server->add([
-            'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW' => 'secret'
+            'PHP_AUTH_USER' => 'dbadmin',
+            'PHP_AUTH_PW' => 'dbsecret'
         ]);
 
         // act
@@ -66,5 +68,21 @@ class DatabaseDriverTest extends TestCase
 
         // assert
         $this->assertTrue($authenticates);
+    }
+
+
+    /** @test */
+    public function it_throws_an_exception_if_no_user_table_exists_when_user_command_is_called()
+    {
+        // arrange
+        Schema::dropIfExists(config('lockdown.table'));
+        $this->app->request->server->add([
+            'PHP_AUTH_USER' => 'dbadmin',
+            'PHP_AUTH_PW' => 'dbsecret'
+        ]);
+
+        // act
+        $this->expectException(LockdownUsersTableNotFound::class);
+        $authenticates = $this->app->lockdown->verifyRequest(self::DRIVER);
     }
 }

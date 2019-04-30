@@ -32,16 +32,16 @@ class Lockdown
 
 
     /**
-     * Spin up a new driver and verify the request
+     * Spin up a new driver and verify the request against the given guard
      *
      * @param string $guardName
      * @return bool
      */
-    public function verifyRequest($guardName)
+    public function verifyRequest($guardName = null)
     {
-        $driver = (new DriverFactory($this->request, $this->getGuard()))->build();
+        $driver = (new DriverFactory($this->getGuard($guardName)))->build();
 
-        return $driver->verifyRequest();
+        return $driver->verifyRequest($this->getProvidedUser(), $this->getProvidedPassword());
     }
 
 
@@ -50,9 +50,29 @@ class Lockdown
      *
      * @return object
      */
-    private function getGuard()
+    private function getGuard($guardName)
     {
         $guardName = $guardName ?? $this->config->get('default');
         return (object) $this->config->get("guards.$guardName");
+    }
+
+    /**
+     * Fetch the user entry from the request
+     *
+     * @return string
+     */
+    final protected function getProvidedUser()
+    {
+        return $this->request->server->get('PHP_AUTH_USER');
+    }
+
+    /**
+     * Fetch the password entry from the request
+     *
+     * @return string
+     */
+    final protected function getProvidedPassword()
+    {
+        return $this->request->server->get('PHP_AUTH_PW');
     }
 }

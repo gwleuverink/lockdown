@@ -2,9 +2,10 @@
 
 namespace Gwleuverink\Lockdown\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Console\Command;
 
 class DeleteDatabaseUser extends Command
 {
@@ -39,6 +40,11 @@ class DeleteDatabaseUser extends Command
      */
     public function handle()
     {
+        if (! Schema::hasTable(config('lockdown.table'))) {
+            return $this->error('Please migrate the lockdown table before running this command.');
+        }
+        
+
         $deleted = DB::table(config('lockdown.table'))
             ->whereGroup($group = $this->argument('group') ?? 'default')
             ->whereUser($user = $this->argument('user'))

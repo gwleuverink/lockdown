@@ -9,12 +9,6 @@ use Gwleuverink\Lockdown\Contracts\DriverContract;
 
 abstract class Driver implements DriverContract
 {
-    /**
-     * The current request instance
-     *
-     * @var Request
-     */
-    protected $request;
 
     /**
      * All optional arguments passed via the guard config
@@ -23,9 +17,8 @@ abstract class Driver implements DriverContract
      */
     protected $arguments;
 
-    public function __construct(Request $request, $arguments)
+    public function __construct($arguments)
     {
-        $this->request = $request;
         $this->arguments = new Collection($arguments);
     }
 
@@ -37,53 +30,22 @@ abstract class Driver implements DriverContract
      * @throws UnauthorizedHttpException
      * @return bool
      */
-    final public function verifyRequest() : bool
+    final public function verifyRequest($user, $password) : bool
     {
         throw_unless(
-            $this->hasCredentials(),
+            $user && $password,
             UnauthorizedHttpException::class,
             'Basic',
             'Invalid Credentials'
         );
 
         throw_unless(
-            $passes = $this->passesAuthentication(),
+            $passes = $this->passesAuthentication($user, $password),
             UnauthorizedHttpException::class,
             'Basic',
             'Invalid credentials.'
         );
 
         return $passes;
-    }
-
-    /**
-     * Fetch the user entry from the request
-     *
-     * @return string
-     */
-    final protected function getProvidedUser()
-    {
-        return $this->request->server->get('PHP_AUTH_USER');
-    }
-
-    /**
-     * Fetch the password entry from the request
-     *
-     * @return string
-     */
-    final protected function getProvidedPassword()
-    {
-        return $this->request->server->get('PHP_AUTH_PW');
-    }
-
-    /**
-     * Checks if the the current request has
-     * both user and password fields filled
-     *
-     * @return boolean
-     */
-    final protected function hasCredentials() : bool
-    {
-        return $this->getProvidedUser() && $this->getProvidedPassword();
     }
 }

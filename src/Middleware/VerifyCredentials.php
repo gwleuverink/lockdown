@@ -8,7 +8,7 @@ use Gwleuverink\Lockdown\Responses\AccessDeniedResponse;
 use Gwleuverink\Lockdown\LockdownFactory;
 use Closure;
 
-class BasicLockGuard
+class VerifyCredentials
 {
     private $app;
 
