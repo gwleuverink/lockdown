@@ -1,12 +1,12 @@
 <?php
 
-namespace Gwleuverink\Lockdown\Tests\Unit;
+namespace Leuverink\Lockdown\Tests\Unit;
 
-use Gwleuverink\Lockdown\DriverFactory;
-use Gwleuverink\Lockdown\Drivers\Driver;
-use Gwleuverink\Lockdown\Tests\TestCase;
-use Gwleuverink\Lockdown\Tests\CustomDriver;
-use Gwleuverink\Lockdown\Exceptions\LockdownDriverNotFound;
+use Leuverink\Lockdown\DriverFactory;
+use Leuverink\Lockdown\Drivers\Driver;
+use Leuverink\Lockdown\Tests\TestCase;
+use Leuverink\Lockdown\Tests\CustomDriver;
+use Leuverink\Lockdown\Exceptions\LockdownDriverNotFound;
 
 class DriverFactoryTest extends TestCase
 {

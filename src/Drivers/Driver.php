@@ -1,9 +1,9 @@
 <?php
 
-namespace Gwleuverink\Lockdown\Drivers;
+namespace Leuverink\Lockdown\Drivers;
 
 use Illuminate\Support\Collection;
-use Gwleuverink\Lockdown\Contracts\DriverContract;
+use Leuverink\Lockdown\Contracts\DriverContract;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 abstract class Driver implements DriverContract

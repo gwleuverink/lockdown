@@ -1,5 +1,5 @@
 {
-    "name": "gwleuverink/lockdown",
+    "name": "leuverink/lockdown",
     "description": "Easily lock sections of your Laravel app with Basic Access Authentication using convenient route middleware & configurable guards",
     "type": "library",
     "license": "MIT",
@@ -26,21 +26,21 @@
     },
     "autoload": {
         "psr-4": {
-            "Gwleuverink\\Lockdown\\": "src/"
+            "Leuverink\\Lockdown\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Gwleuverink\\Lockdown\\Tests\\": "tests/"
+            "Leuverink\\Lockdown\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Gwleuverink\\Lockdown\\ServiceProvider"
+                "Leuverink\\Lockdown\\ServiceProvider"
             ],
             "aliases": {
-                "lockdown": "Gwleuverink\\Lockdown\\Lockdown"
+                "lockdown": "Leuverink\\Lockdown\\Lockdown"
             }
         }
     }

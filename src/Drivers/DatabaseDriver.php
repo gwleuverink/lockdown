@@ -1,11 +1,11 @@
 <?php
 
-namespace Gwleuverink\Lockdown\Drivers;
+namespace Leuverink\Lockdown\Drivers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
-use Gwleuverink\Lockdown\Exceptions\LockdownUsersTableNotFound;
+use Leuverink\Lockdown\Exceptions\LockdownUsersTableNotFound;
 
 class DatabaseDriver extends Driver
 {

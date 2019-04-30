@@ -1,6 +1,6 @@
 <?php
 
-namespace Gwleuverink\Lockdown;
+namespace Leuverink\Lockdown;
 
 use Illuminate\Http\Request;
 use Illuminate\Config\Repository as ConfigRepository;

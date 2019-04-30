@@ -1,11 +1,11 @@
 <?php
 
-namespace Gwleuverink\Lockdown;
+namespace Leuverink\Lockdown;
 
-use Gwleuverink\Lockdown\Commands\CreateDatabaseUser;
-use Gwleuverink\Lockdown\Commands\DeleteDatabaseUser;
+use Leuverink\Lockdown\Commands\CreateDatabaseUser;
+use Leuverink\Lockdown\Commands\DeleteDatabaseUser;
+use Leuverink\Lockdown\Middleware\VerifyCredentials;
 use Illuminate\Config\Repository as ConfigRepository;
-use Gwleuverink\Lockdown\Middleware\VerifyCredentials;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider

@@ -1,11 +1,11 @@
 <?php
 
-namespace Gwleuverink\Lockdown\Tests\Feature;
+namespace Leuverink\Lockdown\Tests\Feature;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Leuverink\Lockdown\Tests\TestCase;
 use Illuminate\Support\Facades\Artisan;
-use Gwleuverink\Lockdown\Tests\TestCase;
 
 class DatabaseUserCommandTest extends TestCase
 {

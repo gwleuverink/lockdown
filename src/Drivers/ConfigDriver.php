@@ -1,6 +1,6 @@
 <?php
 
-namespace Gwleuverink\Lockdown\Drivers;
+namespace Leuverink\Lockdown\Drivers;
 
 class ConfigDriver extends Driver
 {

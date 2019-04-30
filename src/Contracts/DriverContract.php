@@ -1,6 +1,6 @@
 <?php
 
-namespace Gwleuverink\Lockdown\Contracts;
+namespace Leuverink\Lockdown\Contracts;
 
 use Illuminate\Http\Request;
 

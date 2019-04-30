@@ -1,6 +1,6 @@
 <?php
 
-namespace Gwleuverink\Lockdown\Middleware;
+namespace Leuverink\Lockdown\Middleware;
 
 use Closure;
 use Illuminate\Foundation\Application;
