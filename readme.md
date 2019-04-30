@@ -68,8 +68,6 @@ class ExampleController
             $this->lockdown->verifyRequest() // Accepts a optional guard name 
         }
     }
-
-    //
 }
 ```
 
@@ -98,7 +96,7 @@ Out of the box you can make use of the config driver and the database driver. In
 When using the config driver, simply store users inside of the config file. This file should be checked in to version control. This is the easiest driver to get started with. If you don't want to have credentials inside of the config file, which I can imagine, use the database driver instead.
 
 Let's say you want to create an additional guard with the name 'my-custom-guard' using the config driver:
-``` javascript
+``` php
 'my-custom-guard' => [
     'driver' => 'config',
     'arguments' => [
@@ -123,7 +121,7 @@ Same as the config driver you can create as many guards to check against as many
 
 Let's say you'd want to define a new database guard. That would look something like this:
 
-``` javascript
+``` php
 'my-custom-guard' => [
     'driver' => 'database',
     'arguments' => [
@@ -142,9 +140,9 @@ To remove users use the following command:
 ## Custom drivers
 You can also extend Lockdown with your own drivers if the need arises. Simply fill in a fully qualified class name as your driver definition:
 
-``` javascript
+``` php
 'my-custom-guard' => [
-    'driver' => '\\App\\Lockdown\\CustomDriver',
+    'driver' => CustomDriver::class,
     'arguments' => [
         // Whatever extra data you driver needs
     ]
@@ -166,13 +164,9 @@ class CustomDriver extends Driver
      *
      * @return boolean
      */
-    public function passesAuthentication() : bool
+    public function passesAuthentication($user, $password) : bool
     {
-        $user = $this->getProvidedUser();
-        $password = $this->getProvidedPassword();
-
         // Get whatever extra arguments passed in the config using: $this->arguments;
-        //
         // Do whatever checks you like and return a boolean
 
         return $passes
