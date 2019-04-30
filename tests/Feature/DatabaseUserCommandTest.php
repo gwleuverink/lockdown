@@ -2,6 +2,7 @@
 
 namespace Gwleuverink\Lockdown\Tests\Feature;
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Artisan;
 use Gwleuverink\Lockdown\Tests\TestCase;
@@ -27,6 +28,7 @@ class DatabaseUserCommandTest extends TestCase
         (new \CreateLockdownUsersTable)->up();
     }
 
+
     /** @test */
     public function it_creates_a_basic_lock_user_record()
     {
@@ -37,6 +39,7 @@ class DatabaseUserCommandTest extends TestCase
 
         $this->assertTrue($users->isNotEmpty());
     }
+
 
     /** @test */
     public function it_deletes_a_basic_lock_user_record()
@@ -52,5 +55,34 @@ class DatabaseUserCommandTest extends TestCase
             ->get();
 
         $this->assertFalse($users->isNotEmpty());
+    }
+
+
+    /** @test */
+    public function it_returns_exit_code_when_deleting_nonexisting_user()
+    {
+        $this->artisan('lockdown:delete-user', [
+            'user' => 'nonexisting-user',
+            'group' => 'nonexisting-group'
+        ])->assertExitCode(0);
+
+    }
+
+    /** @test */
+    public function it_returns_exit_code_when_database_table_does_not_exist()
+    {
+        Schema::dropIfExists(config('lockdown.table'));
+
+        $this->artisan('lockdown:create-user', [
+            'user' => 'tester',
+            'password' => 'secret',
+            'group' => 'testing'
+        ])->assertExitCode(0);
+
+        $this->artisan('lockdown:delete-user', [
+            'user' => 'tester',
+            'group' => 'testing'
+        ])->assertExitCode(0);
+
     }
 }

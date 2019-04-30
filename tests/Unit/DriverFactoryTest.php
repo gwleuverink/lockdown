@@ -3,6 +3,7 @@
 namespace Gwleuverink\Lockdown\Tests\Unit;
 
 use Gwleuverink\Lockdown\Tests\TestCase;
+use Gwleuverink\Lockdown\Tests\CustomDriver;
 use Gwleuverink\Lockdown\Exceptions\LockdownDriverNotFound;
 use Gwleuverink\Lockdown\Drivers\Driver;
 use Gwleuverink\Lockdown\DriverFactory;
@@ -23,7 +24,7 @@ class DriverFactoryTest extends TestCase
     public function it_creates_a_driver()
     {
         // arrange
-        $factory = new DriverFactory($this->app->request, $this->guard);
+        $factory = new DriverFactory($this->guard);
 
         // act
         $driver = $factory->build();
@@ -38,10 +39,25 @@ class DriverFactoryTest extends TestCase
     {
         // arrange
         $this->guard->driver = 'non-existing-driver-name';
-        $factory = new DriverFactory($this->app->request, $this->guard);
+        $factory = new DriverFactory($this->guard);
 
         // act
         $this->expectException(LockdownDriverNotFound::class);
         $driver = $factory->build();
+    }
+
+    /** @test */
+    public function it_creates_a_driver_instance_if_a_custom_driver_is_used()
+    {
+        // arrange
+        config(['lockdown.guards.config.driver' => CustomDriver::class]);
+        $guard = (object) config('lockdown.guards.config');
+        $factory = new DriverFactory($guard);
+
+        // act
+        $driver = $factory->build();
+
+        // assert
+        $this->assertInstanceOf(Driver::class, $driver);
     }
 }
