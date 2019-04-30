@@ -2,19 +2,19 @@
 
 namespace Gwleuverink\Lockdown\Drivers;
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 use Gwleuverink\Lockdown\Exceptions\LockdownUsersTableNotFound;
 
 class DatabaseDriver extends Driver
 {
     /**
      * Check if current request passes the
-     * BasicLock authentication guard
+     * BasicLock authentication guard.
      *
      * @throws LockdownUsersTableNotFound
-     * @return boolean
+     * @return bool
      */
     public function passesAuthentication($user, $password) : bool
     {
@@ -22,8 +22,7 @@ class DatabaseDriver extends Driver
             Schema::hasTable(config('lockdown.table')),
             LockdownUsersTableNotFound::class
         );
-        
-        
+
         $user = DB::table(config('lockdown.table'))
                     ->whereGroup($this->arguments->get('group'))
                     ->whereUser($user)
