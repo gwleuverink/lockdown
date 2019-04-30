@@ -1,10 +1,10 @@
 <?php
 
-namespace Gwleuverink\Lockdown\Tests\Feature;
+namespace Leuverink\Lockdown\Tests\Feature;
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
-use Gwleuverink\Lockdown\Tests\TestCase;
+use Leuverink\Lockdown\Tests\TestCase;
 
 class RouteGuardTest extends TestCase
 {

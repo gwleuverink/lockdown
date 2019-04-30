@@ -1,6 +1,6 @@
 <?php
 
-namespace Gwleuverink\Lockdown\Exceptions;
+namespace Leuverink\Lockdown\Exceptions;
 
 use Exception;
 

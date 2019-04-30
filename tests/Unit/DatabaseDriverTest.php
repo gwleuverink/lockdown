@@ -1,11 +1,11 @@
 <?php
 
-namespace Gwleuverink\Lockdown\Tests\Unit;
+namespace Leuverink\Lockdown\Tests\Unit;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Artisan;
-use Gwleuverink\Lockdown\Tests\TestCase;
-use Gwleuverink\Lockdown\Exceptions\LockdownUsersTableNotFound;
+use Leuverink\Lockdown\Tests\TestCase;
+use Leuverink\Lockdown\Exceptions\LockdownUsersTableNotFound;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class DatabaseDriverTest extends TestCase

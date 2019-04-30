@@ -1,9 +1,9 @@
 <?php
 
-namespace Gwleuverink\Lockdown;
+namespace Leuverink\Lockdown;
 
-use Gwleuverink\Lockdown\Drivers\Driver;
-use Gwleuverink\Lockdown\Exceptions\LockdownDriverNotFound;
+use Leuverink\Lockdown\Drivers\Driver;
+use Leuverink\Lockdown\Exceptions\LockdownDriverNotFound;
 
 class DriverFactory
 {
@@ -17,7 +17,7 @@ class DriverFactory
     /**
      * Create a Driver instance.
      *
-     * @return \Gwleuverink\Lockdown\Drivers\Driver
+     * @return \Leuverink\Lockdown\Drivers\Driver
      */
     public function build() : Driver
     {

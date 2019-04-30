@@ -1,8 +1,8 @@
 <?php
 
-namespace Gwleuverink\Lockdown\Tests\Unit;
+namespace Leuverink\Lockdown\Tests\Unit;
 
-use Gwleuverink\Lockdown\Tests\TestCase;
+use Leuverink\Lockdown\Tests\TestCase;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class ConfigDriverTest extends TestCase

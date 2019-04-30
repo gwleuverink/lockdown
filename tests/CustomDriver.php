@@ -1,8 +1,8 @@
 <?php
 
-namespace Gwleuverink\Lockdown\Tests;
+namespace Leuverink\Lockdown\Tests;
 
-use Gwleuverink\Lockdown\Drivers\ConfigDriver;
+use Leuverink\Lockdown\Drivers\ConfigDriver;
 
 class CustomDriver extends ConfigDriver
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Gwleuverink\Lockdown\Commands;
+namespace Leuverink\Lockdown\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
