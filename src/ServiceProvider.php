@@ -4,7 +4,7 @@ namespace Gwleuverink\Lockdown;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Illuminate\Config\Repository as ConfigRepository;
-use Gwleuverink\Lockdown\Middleware\BasicLockGuard;
+use Gwleuverink\Lockdown\Middleware\Lockdown as LockdownMiddleware;
 use Gwleuverink\Lockdown\Lockdown;
 use Gwleuverink\Lockdown\Commands\DeleteDatabaseUser;
 use Gwleuverink\Lockdown\Commands\CreateDatabaseUser;
@@ -14,7 +14,7 @@ class ServiceProvider extends BaseServiceProvider
     public function boot()
     {
         // Boot middleware
-        $this->app->router->aliasMiddleware('lockdown', BasicLockGuard::class);
+        $this->app->router->aliasMiddleware('lockdown', LockdownMiddleware::class);
 
         // Boot commands
         if ($this->app->runningInConsole()) {
