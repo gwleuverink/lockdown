@@ -4,35 +4,31 @@ namespace Gwleuverink\Lockdown;
 
 use Illuminate\Http\Request;
 use Illuminate\Config\Repository as ConfigRepository;
-use Gwleuverink\Lockdown\Exceptions\LockdownDriverNotFound;
-use Gwleuverink\Lockdown\Contracts\DriverContract;
 
 class Lockdown
 {
     /**
-     * The current request instance
+     * The current request instance.
      *
      * @var Request
      */
     protected $request;
 
     /**
-     * The guard configuration
+     * The guard configuration.
      *
      * @var ConfigRepository
      */
     public $config;
 
-    
     public function __construct(Request $request, ConfigRepository $config)
     {
         $this->request = $request;
         $this->config = $config;
     }
 
-
     /**
-     * Spin up a new driver and verify the request against the given guard
+     * Spin up a new driver and verify the request against the given guard.
      *
      * @param string $guardName
      * @return bool
@@ -44,20 +40,20 @@ class Lockdown
         return $driver->verifyRequest($this->getProvidedUser(), $this->getProvidedPassword());
     }
 
-
     /**
-     * Get the current guard section from the config
+     * Get the current guard section from the config.
      *
      * @return object
      */
     private function getGuard($guardName)
     {
         $guardName = $guardName ?? $this->config->get('default');
+
         return (object) $this->config->get("guards.$guardName");
     }
 
     /**
-     * Fetch the user entry from the request
+     * Fetch the user entry from the request.
      *
      * @return string
      */
@@ -67,7 +63,7 @@ class Lockdown
     }
 
     /**
-     * Fetch the password entry from the request
+     * Fetch the password entry from the request.
      *
      * @return string
      */

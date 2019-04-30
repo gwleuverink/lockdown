@@ -2,12 +2,11 @@
 
 namespace Gwleuverink\Lockdown\Tests\Unit;
 
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Artisan;
 use Gwleuverink\Lockdown\Tests\TestCase;
-use Gwleuverink\Lockdown\LockdownFactory;
 use Gwleuverink\Lockdown\Exceptions\LockdownUsersTableNotFound;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class DatabaseDriverTest extends TestCase
 {
@@ -20,17 +19,16 @@ class DatabaseDriverTest extends TestCase
         // Create a database user
         Artisan::call('lockdown:create-user', [
             'user' => 'dbadmin',
-            'password' => 'dbsecret'
+            'password' => 'dbsecret',
         ]);
     }
 
     protected function getEnvironmentSetUp($app)
     {
-        include_once __DIR__ . '/../../database/migrations/create_lockdown_users_table.php.stub';
-    
+        include_once __DIR__.'/../../database/migrations/create_lockdown_users_table.php.stub';
+
         (new \CreateLockdownUsersTable)->up();
     }
-
 
     /** @test */
     public function it_does_not_pass_authentication_without_credentials()
@@ -46,7 +44,7 @@ class DatabaseDriverTest extends TestCase
         // arrange
         $this->app->request->server->add([
             'PHP_AUTH_USER' => 'wrong_user',
-            'PHP_AUTH_PW' => 'wrong_password'
+            'PHP_AUTH_PW' => 'wrong_password',
         ]);
 
         // act
@@ -60,7 +58,7 @@ class DatabaseDriverTest extends TestCase
         // arrange
         $this->app->request->server->add([
             'PHP_AUTH_USER' => 'dbadmin',
-            'PHP_AUTH_PW' => 'dbsecret'
+            'PHP_AUTH_PW' => 'dbsecret',
         ]);
 
         // act
@@ -70,7 +68,6 @@ class DatabaseDriverTest extends TestCase
         $this->assertTrue($authenticates);
     }
 
-
     /** @test */
     public function it_throws_an_exception_if_no_user_table_exists_when_user_command_is_called()
     {
@@ -78,7 +75,7 @@ class DatabaseDriverTest extends TestCase
         Schema::dropIfExists(config('lockdown.table'));
         $this->app->request->server->add([
             'PHP_AUTH_USER' => 'dbadmin',
-            'PHP_AUTH_PW' => 'dbsecret'
+            'PHP_AUTH_PW' => 'dbsecret',
         ]);
 
         // act

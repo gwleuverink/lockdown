@@ -2,16 +2,14 @@
 
 namespace Gwleuverink\Lockdown\Drivers;
 
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Illuminate\Support\Collection;
-use Illuminate\Http\Request;
 use Gwleuverink\Lockdown\Contracts\DriverContract;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 abstract class Driver implements DriverContract
 {
-
     /**
-     * All optional arguments passed via the guard config
+     * All optional arguments passed via the guard config.
      *
      * @var Collection
      */
