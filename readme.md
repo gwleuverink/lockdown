@@ -5,10 +5,10 @@
 </p>
 
 <p align="center">
-    <a href="https://travis-ci.org/Leuverink/lockdown"><img src="https://travis-ci.org/Leuverink/lockdown.svg?branch=master" alt="Build Status"></a>
-    <a href="https://packagist.org/packages/Leuverink/lockdown"><img src="https://poser.pugx.org/Leuverink/lockdown/d/total.svg" alt="Total Downloads"></a>
-    <a href="https://packagist.org/packages/Leuverink/lockdown"><img src="https://poser.pugx.org/Leuverink/lockdown/v/stable.svg" alt="Latest Stable Version"></a>
-    <a href="https://packagist.org/packages/Leuverink/lockdown"><img src="https://poser.pugx.org/Leuverink/lockdown/license.svg" alt="License"></a>
+    <a href="https://travis-ci.org/gwleuverink/lockdown"><img src="https://travis-ci.org/gwleuverink/lockdown.svg?branch=master" alt="Build Status"></a>
+    <a href="https://packagist.org/packages/gwleuverink/lockdown"><img src="https://poser.pugx.org/gwleuverink/lockdown/d/total.svg" alt="Total Downloads"></a>
+    <a href="https://packagist.org/packages/gwleuverink/lockdown"><img src="https://poser.pugx.org/gwleuverink/lockdown/v/stable.svg" alt="Latest Stable Version"></a>
+    <a href="https://packagist.org/packages/gwleuverink/lockdown"><img src="https://poser.pugx.org/gwleuverink/lockdown/license.svg" alt="License"></a>
 </p>
 
 <br/>
