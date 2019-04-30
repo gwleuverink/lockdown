@@ -1,15 +1,17 @@
 <h1 align="center">Lockdown</h1>
 
 <p align="center">
+    Easily lock sections of your Laravel app with Basic Access Authentication using convenient route middleware &amp; configurable guards
+</p>
+
+<p align="center">
     <a href="https://travis-ci.org/gwleuverink/lockdown"><img src="https://travis-ci.org/gwleuverink/lockdown.svg?branch=master" alt="Build Status"></a>
     <a href="https://packagist.org/packages/gwleuverink/lockdown"><img src="https://poser.pugx.org/gwleuverink/lockdown/d/total.svg" alt="Total Downloads"></a>
     <a href="https://packagist.org/packages/gwleuverink/lockdown"><img src="https://poser.pugx.org/gwleuverink/lockdown/v/stable.svg" alt="Latest Stable Version"></a>
     <a href="https://packagist.org/packages/gwleuverink/lockdown"><img src="https://poser.pugx.org/gwleuverink/lockdown/license.svg" alt="License"></a>
 </p>
 
-<p align="center">
-    Easily lock sections of your Laravel app with Basic Access Authentication using convenient route middleware &amp; configurable guards
-</p>
+<br/>
 
 ## A note on security
 Lockdown is meant to shield sections of your project from prying eyes, for example if you like to demo a feature that is not ready for production.
