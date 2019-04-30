@@ -4,8 +4,8 @@ namespace Leuverink\Lockdown;
 
 use Leuverink\Lockdown\Commands\CreateDatabaseUser;
 use Leuverink\Lockdown\Commands\DeleteDatabaseUser;
-use Illuminate\Config\Repository as ConfigRepository;
 use Leuverink\Lockdown\Middleware\VerifyCredentials;
+use Illuminate\Config\Repository as ConfigRepository;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider

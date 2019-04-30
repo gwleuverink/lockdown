@@ -4,8 +4,8 @@ namespace Leuverink\Lockdown\Tests\Feature;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Artisan;
 use Leuverink\Lockdown\Tests\TestCase;
+use Illuminate\Support\Facades\Artisan;
 
 class DatabaseUserCommandTest extends TestCase
 {
