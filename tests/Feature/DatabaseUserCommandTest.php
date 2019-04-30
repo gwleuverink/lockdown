@@ -65,7 +65,6 @@ class DatabaseUserCommandTest extends TestCase
             'user' => 'nonexisting-user',
             'group' => 'nonexisting-group'
         ])->assertExitCode(0);
-
     }
 
     /** @test */
@@ -83,6 +82,5 @@ class DatabaseUserCommandTest extends TestCase
             'user' => 'tester',
             'group' => 'testing'
         ])->assertExitCode(0);
-
     }
 }

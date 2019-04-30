@@ -30,7 +30,6 @@ class DatabaseDriver extends Driver
                     ->first();
 
         // User exists and password matches
-        return $user && Hash::check(
-            $password, $user->password);
+        return $user && Hash::check($password, $user->password);
     }
 }

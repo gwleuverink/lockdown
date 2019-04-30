@@ -40,7 +40,6 @@ class CreateDatabaseUser extends Command
      */
     public function handle()
     {
-
         if (! Schema::hasTable(config('lockdown.table'))) {
             return $this->error('Please migrate the lockdown table before running this command.');
         }
