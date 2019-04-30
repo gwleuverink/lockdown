@@ -24,7 +24,7 @@ That said there are plenty of situations where a easily configurable Basic Acces
 
 **Install the package**
 
-`composer install gwleuverink/lockdown`
+`composer require gwleuverink/lockdown`
 
 **Publish the config file**
 
