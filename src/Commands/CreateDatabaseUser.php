@@ -2,10 +2,10 @@
 
 namespace Gwleuverink\Lockdown\Commands;
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 
 class CreateDatabaseUser extends Command
 {
@@ -44,11 +44,10 @@ class CreateDatabaseUser extends Command
             return $this->error('Please migrate the lockdown table before running this command.');
         }
 
-
         $created = DB::table(config('lockdown.table'))->insert([
             'group' => $group = $this->argument('group') ?? 'default',
             'user' => $user = $this->argument('user'),
-            'password' => Hash::make($this->argument('password'))
+            'password' => Hash::make($this->argument('password')),
         ]);
 
         if ($created) {

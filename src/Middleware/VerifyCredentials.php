@@ -2,11 +2,8 @@
 
 namespace Gwleuverink\Lockdown\Middleware;
 
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
-use Illuminate\Foundation\Application;
-use Gwleuverink\Lockdown\Responses\AccessDeniedResponse;
-use Gwleuverink\Lockdown\LockdownFactory;
 use Closure;
+use Illuminate\Foundation\Application;
 
 class VerifyCredentials
 {
