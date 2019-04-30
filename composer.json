@@ -1,5 +1,5 @@
 {
-    "name": "gwleuverink/laravel-lockdown",
+    "name": "gwleuverink/lockdown",
     "description": "Easily lock sections of your Laravel app with Basic Access Authentication using convenient route middleware & configurable guards",
     "type": "library",
     "license": "MIT",
