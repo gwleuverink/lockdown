@@ -2,14 +2,12 @@
 
 namespace Gwleuverink\Lockdown\Tests\Unit;
 
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Gwleuverink\Lockdown\Tests\TestCase;
-use Gwleuverink\Lockdown\LockdownFactory;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class ConfigDriverTest extends TestCase
 {
     const DRIVER = 'config';
-
 
     /** @test */
     public function it_does_not_pass_authentication_without_credentials()
@@ -25,7 +23,7 @@ class ConfigDriverTest extends TestCase
         // arrange
         $this->app->request->server->add([
             'PHP_AUTH_USER' => 'wrong_user',
-            'PHP_AUTH_PW' => 'wrong_password'
+            'PHP_AUTH_PW' => 'wrong_password',
         ]);
 
         // act
@@ -39,9 +37,9 @@ class ConfigDriverTest extends TestCase
         // arrange
         $this->app->request->server->add([
             'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW' => 'secret'
+            'PHP_AUTH_PW' => 'secret',
         ]);
-     
+
         // act
         $authenticates = $this->app->lockdown->verifyRequest(self::DRIVER);
 

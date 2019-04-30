@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 interface DriverContract
 {
     public function __construct($arguments);
-    
+
     /**
      * Check if current request passes the
-     * BasicLock authentication guard
+     * BasicLock authentication guard.
      *
-     * @return boolean
+     * @return bool
      */
     public function passesAuthentication($user, $password) : bool;
 }
