@@ -1,0 +1,10 @@
+theme: jekyll-theme-minimal
+
+#Setup
+title: Lockdown
+description: Easily lock sections of your Laravel app with Basic Access Authentication
+
+# About/contact
+author:
+  name: Willem Leuverink
+  url: https://leuver.ink
