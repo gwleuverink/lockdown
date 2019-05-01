@@ -13,8 +13,6 @@
 
 <br/>
 
-***CAUTION: NOT PRODUCTION READY AT THIS TIME.***
-
 ## A note on security
 Lockdown is meant to shield sections of your project from prying eyes, for example if you like to demo a feature that is not ready for production.
 
