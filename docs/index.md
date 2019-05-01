@@ -5,8 +5,9 @@
     <a href="https://packagist.org/packages/gwleuverink/lockdown"><img src="https://poser.pugx.org/gwleuverink/lockdown/license.svg" alt="License"></a>
 </p>
 
-Easily lock sections of your Laravel app with Basic Access Authentication using convenient route middleware  
-Lockdown provides a clean way to integrate with middleware and supports multiple configurations due to it's guard setup similar to Laravel's authentication guards. 
+Easily lock sections of your Laravel app with Basic Access Authentication.
+
+Lockdown provides a flexible middleware that supports multiple configurations due to it's guard setup similar to Laravel's authentication guards. Lockdown also supports multiple driver types which defines multipe ways to store user credentials and provides the ability to extend drivers so behaviour can be completely customised to your needs.
 
 ## Installation
 
