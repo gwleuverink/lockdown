@@ -7,7 +7,9 @@
 
 Easily lock sections of your Laravel app with Basic Access Authentication.
 
-Lockdown provides a flexible middleware that supports multiple configurations due to it's guard setup similar to Laravel's authentication guards. Lockdown also supports multiple driver types which defines multipe ways to store user credentials and provides the ability to extend drivers so behaviour can be completely customised to your needs.
+Lockdown provides a flexible middleware that supports multiple configurations due to it's guard setup similar to Laravel's authentication guards. 
+
+Lockdown ships with confguration & database drivers and provides support for custom drivers in order to serve any implementation you might need.
 
 ## Installation
 
@@ -16,3 +18,10 @@ Lockdown provides a flexible middleware that supports multiple configurations du
 **Optionally publish the config file**
 
 `php artisan vendor:publish --tag="lockdown:config"`
+
+## A note on security
+Lockdown is meant to shield sections of your project from prying eyes, for example if you like to demo a feature that is not ready for production.
+
+Basic Acces Auth is insecure by nature. If in production always make sure to have TLS configured so all credentials are encrypted. Even with that precaution I heavily discourage you use this package to protect valuable data. It is not meant to do that. 
+
+That said there are plenty of situations where a easily configurable Basic Access Auth middleware is exactly what you need. If you find yourself in one of those situations, read on!
