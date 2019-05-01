@@ -21,16 +21,16 @@ class DriverFactory
      */
     public function build() : Driver
     {
-        $driver = $this->guard->driver;
         $arguments = $this->resolveDriverArguments();
 
-        // if passed driver is a class it means it is a custom driver
+        // Check if the configured driver exists
+        $driver = $this->resolveDriverPath();
         if (class_exists($driver)) {
             return new $driver($arguments);
         }
 
-        // Not a custom driver. Check if the configured vendor driver exists
-        $driver = $this->resolveDriverPath();
+        // If not a Lockdown driver it means it is a custom driver
+        $driver = $this->guard->driver;
         if (class_exists($driver)) {
             return new $driver($arguments);
         }
