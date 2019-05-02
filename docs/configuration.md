@@ -43,7 +43,7 @@ Route::get('some-protected-route', PageController::class)->middleware('lockdown:
 // Or pass it to the validateRequest method when not using middleware
 public function __invoke(Lockdown $lockdown)
 {   
-    $this->lockdown->verifyRequest('config');
+    $lockdown->verifyRequest('config');
 }
 ```
 

@@ -42,7 +42,7 @@ class ExampleController
     {
         // 
         if($someCondition === true) {
-            $this->lockdown->verifyRequest() // Accepts a optional guard name 
+            $lockdown->verifyRequest() // Accepts a optional guard name 
         }
     }
 }
