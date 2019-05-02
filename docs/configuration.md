@@ -97,3 +97,11 @@ Each guard using the database driver should have a group name defined within it'
 
 ### Database driver commands
 Lockdown provides commands to create & delete users for the database driver.
+
+`php artisan lockdown:create-user username password my-custom-group`
+
+To remove users use the following command:
+
+`php artisan lockdown:delete-user username my-custom-group`
+
+When no group name is given users will be added or removed from the `default` group
