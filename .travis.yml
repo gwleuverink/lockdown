@@ -10,7 +10,8 @@ env:
     - COMPOSER_FLAGS=""
 
 before_script:
+  - composer require --dev php-coveralls/php-coveralls
   - travis_retry composer update ${COMPOSER_FLAGS}
 
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/phpunit --coverage-clover
