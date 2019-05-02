@@ -34,4 +34,4 @@ That said there are plenty of situations where a easily configurable Basic Acces
 
 ## Getting started
 
-For usage, check out [the documentation](https://gwleuverink@github.io "Lockdown documentation").
+For usage, check out [the documentation](https://gwleuverink.github.io/lockdown "Lockdown documentation").
