@@ -20,7 +20,8 @@ return [
     'guards' => [
         'config' => [
             'driver' => 'config',
-            'arguments' => [
+
+            'users' => [
                 [
                     'user' => 'admin',
                     'password' => 'secret',
@@ -29,9 +30,8 @@ return [
         ],
         'database' => [
             'driver' => 'database',
-            'arguments' => [
-                'group' => 'default',
-            ],
+
+            'group' => 'default',
         ],
     ],
 ];

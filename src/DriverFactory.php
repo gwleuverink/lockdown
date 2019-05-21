@@ -2,6 +2,7 @@
 
 namespace Leuverink\Lockdown;
 
+use Illuminate\Support\Collection;
 use Leuverink\Lockdown\Drivers\Driver;
 use Leuverink\Lockdown\Exceptions\LockdownDriverNotFound;
 
@@ -9,9 +10,9 @@ class DriverFactory
 {
     private $guard;
 
-    public function __construct(object $guard)
+    public function __construct($guard)
     {
-        $this->guard = $guard;
+        $this->guard = new Collection($guard);
     }
 
     /**
@@ -30,7 +31,7 @@ class DriverFactory
         }
 
         // If not a Lockdown driver it means it is a custom driver
-        $driver = $this->guard->driver;
+        $driver = $this->guard->get('driver');
         if (class_exists($driver)) {
             return new $driver($arguments);
         }
@@ -46,7 +47,9 @@ class DriverFactory
      */
     private function resolveDriverPath()
     {
-        return sprintf('\\%s\\Drivers\\%sDriver', __NAMESPACE__, ucfirst($this->guard->driver));
+        $driverClassName = ucfirst($this->guard->get('driver'));
+
+        return sprintf('\\%s\\Drivers\\%sDriver', __NAMESPACE__, $driverClassName);
     }
 
     /**
@@ -56,6 +59,6 @@ class DriverFactory
      */
     private function resolveDriverArguments()
     {
-        return $this->guard->arguments ?? null;
+        return $this->guard->except('driver')->toArray() ?? null;
     }
 }

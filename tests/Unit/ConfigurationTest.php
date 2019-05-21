@@ -16,9 +16,9 @@ class ConfigurationTest extends TestCase
         $this->assertNotNull($lock->config->get('guards'));
         $this->assertNotNull($lock->config->get('guards.config'));
         $this->assertNotNull($lock->config->get('guards.config.driver'));
-        $this->assertNotNull($lock->config->get('guards.config.arguments'));
+        $this->assertNotNull($lock->config->get('guards.config.users'));
         $this->assertNotNull($lock->config->get('guards.database'));
         $this->assertNotNull($lock->config->get('guards.database.driver'));
-        $this->assertNotNull($lock->config->get('guards.database.arguments.group'));
+        $this->assertNotNull($lock->config->get('guards.database.group'));
     }
 }

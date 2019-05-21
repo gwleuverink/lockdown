@@ -16,7 +16,7 @@ class DriverFactoryTest extends TestCase
     {
         parent::setUp();
 
-        $this->guard = (object) config('lockdown.guards.config');
+        $this->guard = config('lockdown.guards.config');
     }
 
     /** @test */
@@ -36,7 +36,7 @@ class DriverFactoryTest extends TestCase
     public function it_throws_exception_when_driver_not_found()
     {
         // arrange
-        $this->guard->driver = 'non-existing-driver-name';
+        $this->guard['driver'] = 'non-existing-driver-name';
         $factory = new DriverFactory($this->guard);
 
         // act

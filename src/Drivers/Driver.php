@@ -2,22 +2,14 @@
 
 namespace Leuverink\Lockdown\Drivers;
 
-use Illuminate\Support\Collection;
 use Leuverink\Lockdown\Contracts\DriverContract;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 abstract class Driver implements DriverContract
 {
-    /**
-     * All optional arguments passed via the guard config.
-     *
-     * @var Collection
-     */
-    protected $arguments;
-
-    public function __construct($arguments)
+    public function __construct($properties)
     {
-        $this->arguments = new Collection($arguments);
+        $this->setObjectProperties($properties);
     }
 
     /**
@@ -45,5 +37,18 @@ abstract class Driver implements DriverContract
         );
 
         return $passes;
+    }
+
+    /**
+     * Set the instance public properties dynamically.
+     *
+     * @param array $properties
+     * @return void
+     */
+    final private function setObjectProperties(array $properties)
+    {
+        foreach ($properties as $name => $value) {
+            $this->$name = $value;
+        }
     }
 }
