@@ -21,21 +21,17 @@ return [
         'config' => [
             'driver' => 'config',
 
-            'arguments' => [
-                'users' => [
-                    [
-                        'user' => 'admin',
-                        'password' => 'secret',
-                    ],
-                ],
-            ],
+            'users' => [
+                [
+                    'user' => 'admin',
+                    'password' => 'secret'
+                ]
+            ]
         ],
         'database' => [
             'driver' => 'database',
             
-            'arguments' => [
-                'group' => 'default',
-            ],
-        ],
-    ],
+            'group' => 'default'
+        ]
+    ]
 ];
