@@ -22,12 +22,13 @@ Let's take the first guard that is configured when you first publish the config 
 'guards' => [
     'config' => [
         'driver' => 'config',
-        'arguments' => [
+
+        'users' => [
             [
                 'user' => 'admin',
-                'password' => 'secret',
-            ],
-        ],
+                'password' => 'secret'
+            ]
+        ]
     ],
 ]
 ```
@@ -49,7 +50,7 @@ public function __invoke(Lockdown $lockdown)
 
 <br />
 
-As you can see a guard always consists of a name and two keys; a driver definition and optional arguments passed to that driver. Read on for more information on the available drivers Lockdown ships with.
+As you can see a guard always consists of a name and a driver definition, and based on the driver chosen some additional values which are injected into the driver implementation. Read on for more information on the available drivers Lockdown ships with.
 
 ## The config driver
 The config driver is the easiest to get started with. Using this driver lockdown authentication requests are validated against an array of user credentials which are passed inside of the guard's arguments. Let's say you'd want to define a new guard with the name `my-custom-guard` using the config driver. You'd go about it as follows:
@@ -57,15 +58,16 @@ The config driver is the easiest to get started with. Using this driver lockdown
 ``` php
 'my-custom-guard' => [
     'driver' => 'config',
-    'arguments' => [
+
+    'users' => [
         [
             'user' => 'example user 1',
-            'password' => 'secret',
+            'password' => 'secret'
         ],
         [
             'user' => 'example user 2',
-            'password' => 'secret',
-        ],
+            'password' => 'secret'
+        ]
         // And so on...
     ],
 ],
@@ -87,13 +89,12 @@ Same as the config driver you can create as many guards to check against as many
 ``` php
 'my-custom-guard' => [
     'driver' => 'database',
-    'arguments' => [
-        'group' => 'my-group-name'
-    ]
+
+    'group' => 'my-group-name'
 ],
 ```
 
-Each guard using the database driver should have a group name defined within it's arguments clause. Credentials are checked for a username & password in combination with a group. This way you can create multiple groups of users if you want to have it so different sections of your app are accessible to different groups of users.
+Each guard using the database driver should have a group name defined. Credentials are checked for a username & password in combination with a group. This way you can create multiple groups of users if you want to have it so different sections of your app are accessible to different groups of users.
 
 ### Database driver commands
 Lockdown provides commands to create & delete users for the database driver.
