@@ -21,10 +21,14 @@ return [
         'config' => [
             'driver' => 'config',
             'arguments' => [
-                [
-                    'user' => 'admin',
-                    'password' => 'secret',
+
+                'users' => [
+                    [
+                        'user' => 'admin',
+                        'password' => 'secret',
+                    ],
                 ],
+                
             ],
         ],
         'database' => [

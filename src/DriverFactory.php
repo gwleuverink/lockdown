@@ -4,14 +4,16 @@ namespace Leuverink\Lockdown;
 
 use Leuverink\Lockdown\Drivers\Driver;
 use Leuverink\Lockdown\Exceptions\LockdownDriverNotFound;
+use Illuminate\Support\Fluent;
 
 class DriverFactory
 {
+
     private $guard;
 
-    public function __construct(object $guard)
+    public function __construct($guard)
     {
-        $this->guard = $guard;
+        $this->guard = new Fluent($guard);
     }
 
     /**

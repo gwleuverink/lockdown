@@ -16,7 +16,7 @@ class DriverFactoryTest extends TestCase
     {
         parent::setUp();
 
-        $this->guard = (object) config('lockdown.guards.config');
+        $this->guard = config('lockdown.guards.config');
     }
 
     /** @test */
