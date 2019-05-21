@@ -4,9 +4,11 @@ You can also extend Lockdown with your own drivers if the need arises. Simply fi
 ``` php
 'my-custom-guard' => [
     'driver' => CustomDriver::class,
-    'arguments' => [
-        // Whatever extra data you driver needs
-    ]
+
+    // Add watever extra data you driver needs. 
+    // Each key will be accessible as a public 
+    // property within your custom driver
+    'someCustomArgument' => 'Foo'
 ],
 ```
 
@@ -27,9 +29,11 @@ class CustomDriver extends Driver
      */
     public function passesAuthentication($user, $password) : bool
     {
-        // Get whatever extra arguments passed in the config using: $this->arguments;
-        // Do whatever checks you like and return a boolean
+        // Get whatever extra arguments passed in the config as a class property
+        // Example;
+        $customProperty = $this->someCustomArgument; // returns 'Foo' as per the config in the example above.
 
+        // Do whatever checks you like and return a boolean
         return $passes
     }
 }
