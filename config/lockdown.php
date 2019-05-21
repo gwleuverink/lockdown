@@ -20,19 +20,19 @@ return [
     'guards' => [
         'config' => [
             'driver' => 'config',
-            'arguments' => [
 
+            'arguments' => [
                 'users' => [
                     [
                         'user' => 'admin',
                         'password' => 'secret',
                     ],
                 ],
-                
             ],
         ],
         'database' => [
             'driver' => 'database',
+            
             'arguments' => [
                 'group' => 'default',
             ],

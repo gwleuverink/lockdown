@@ -24,7 +24,7 @@ class DatabaseDriver extends Driver
         );
 
         $user = DB::table(config('lockdown.table'))
-                    ->whereGroup($this->arguments->get('group'))
+                    ->whereGroup($this->group)
                     ->whereUser($user)
                     ->first();
 

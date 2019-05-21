@@ -36,7 +36,7 @@ class DriverFactoryTest extends TestCase
     public function it_throws_exception_when_driver_not_found()
     {
         // arrange
-        $this->guard->driver = 'non-existing-driver-name';
+        $this->guard['driver'] = 'non-existing-driver-name';
         $factory = new DriverFactory($this->guard);
 
         // act

@@ -12,7 +12,8 @@ class ConfigDriver extends Driver
      */
     public function passesAuthentication($user, $password) : bool
     {
-        $passes = $this->arguments->filter(function ($authenticatable) use ($user, $password) {
+
+        $passes = collect($this->users)->filter(function ($authenticatable) use ($user, $password) {
             return $authenticatable['user'] === $user &&
                    $authenticatable['password'] === $password;
         })->isNotEmpty();

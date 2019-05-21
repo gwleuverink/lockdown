@@ -44,7 +44,7 @@ abstract class Driver implements DriverContract
     /**
      * Set the instance public properties dynamically
      *
-     * @param array$properties
+     * @param array $properties
      * @return void
      */
     final private function setObjectProperties(array $properties)
