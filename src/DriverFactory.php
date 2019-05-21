@@ -8,7 +8,6 @@ use Leuverink\Lockdown\Exceptions\LockdownDriverNotFound;
 
 class DriverFactory
 {
-
     private $guard;
 
     public function __construct($guard)
@@ -49,6 +48,7 @@ class DriverFactory
     private function resolveDriverPath()
     {
         $driverClassName = ucfirst($this->guard->get('driver'));
+
         return sprintf('\\%s\\Drivers\\%sDriver', __NAMESPACE__, $driverClassName);
     }
 

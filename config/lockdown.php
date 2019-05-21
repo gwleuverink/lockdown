@@ -24,14 +24,14 @@ return [
             'users' => [
                 [
                     'user' => 'admin',
-                    'password' => 'secret'
-                ]
-            ]
+                    'password' => 'secret',
+                ],
+            ],
         ],
         'database' => [
             'driver' => 'database',
-            
-            'group' => 'default'
-        ]
-    ]
+
+            'group' => 'default',
+        ],
+    ],
 ];
