@@ -8,7 +8,7 @@ use Leuverink\Lockdown\Tests\TestCase;
 
 class RouteGuardTest extends TestCase
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
         Route::get('lockdown/protected', function () {

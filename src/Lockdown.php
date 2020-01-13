@@ -2,8 +2,8 @@
 
 namespace Leuverink\Lockdown;
 
-use Illuminate\Http\Request;
 use Illuminate\Config\Repository as ConfigRepository;
+use Illuminate\Http\Request;
 
 class Lockdown
 {

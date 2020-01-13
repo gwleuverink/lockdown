@@ -2,11 +2,11 @@
 
 namespace Leuverink\Lockdown;
 
+use Illuminate\Config\Repository as ConfigRepository;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Leuverink\Lockdown\Commands\CreateDatabaseUser;
 use Leuverink\Lockdown\Commands\DeleteDatabaseUser;
 use Leuverink\Lockdown\Middleware\VerifyCredentials;
-use Illuminate\Config\Repository as ConfigRepository;
-use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -25,7 +25,7 @@ class ServiceProvider extends BaseServiceProvider
 
         // Publish config
         $this->publishes([
-             __DIR__.'/../config/lockdown.php' => base_path('config/lockdown.php'),
+            __DIR__.'/../config/lockdown.php' => base_path('config/lockdown.php'),
         ], 'lockdown:config');
 
         // Publish migrations
