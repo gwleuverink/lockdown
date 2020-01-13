@@ -20,7 +20,7 @@ abstract class Driver implements DriverContract
      * @throws UnauthorizedHttpException
      * @return bool
      */
-    final public function verifyRequest($user, $password) : bool
+    final public function verifyRequest($user, $password): bool
     {
         throw_unless(
             $user && $password,

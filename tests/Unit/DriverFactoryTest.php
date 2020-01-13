@@ -4,15 +4,15 @@ namespace Leuverink\Lockdown\Tests\Unit;
 
 use Leuverink\Lockdown\DriverFactory;
 use Leuverink\Lockdown\Drivers\Driver;
-use Leuverink\Lockdown\Tests\TestCase;
-use Leuverink\Lockdown\Tests\CustomDriver;
 use Leuverink\Lockdown\Exceptions\LockdownDriverNotFound;
+use Leuverink\Lockdown\Tests\CustomDriver;
+use Leuverink\Lockdown\Tests\TestCase;
 
 class DriverFactoryTest extends TestCase
 {
     private $guard;
 
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 

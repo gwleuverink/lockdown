@@ -20,7 +20,7 @@ class DriverFactory
      *
      * @return \Leuverink\Lockdown\Drivers\Driver
      */
-    public function build() : Driver
+    public function build(): Driver
     {
         $arguments = $this->resolveDriverArguments();
 
