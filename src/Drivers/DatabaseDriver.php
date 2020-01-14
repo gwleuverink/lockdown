@@ -16,7 +16,7 @@ class DatabaseDriver extends Driver
      * @throws LockdownUsersTableNotFound
      * @return bool
      */
-    public function passesAuthentication($user, $password) : bool
+    public function passesAuthentication($user, $password): bool
     {
         throw_unless(
             Schema::hasTable(config('lockdown.table')),

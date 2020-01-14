@@ -10,7 +10,7 @@ class ConfigDriver extends Driver
      *
      * @return bool
      */
-    public function passesAuthentication($user, $password) : bool
+    public function passesAuthentication($user, $password): bool
     {
         $passes = collect($this->users)->filter(function ($authenticatable) use ($user, $password) {
             return $authenticatable['user'] === $user &&
