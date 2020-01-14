@@ -14,5 +14,5 @@ interface DriverContract
      *
      * @return bool
      */
-    public function passesAuthentication($user, $password) : bool;
+    public function passesAuthentication($user, $password): bool;
 }

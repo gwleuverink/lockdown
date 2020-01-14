@@ -2,14 +2,14 @@
 
 namespace Leuverink\Lockdown\Tests\Feature;
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Leuverink\Lockdown\Tests\TestCase;
-use Illuminate\Support\Facades\Artisan;
 
 class DatabaseUserCommandTest extends TestCase
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 

@@ -2,17 +2,17 @@
 
 namespace Leuverink\Lockdown\Tests\Unit;
 
-use Illuminate\Support\Facades\Schema;
-use Leuverink\Lockdown\Tests\TestCase;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schema;
 use Leuverink\Lockdown\Exceptions\LockdownUsersTableNotFound;
+use Leuverink\Lockdown\Tests\TestCase;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class DatabaseDriverTest extends TestCase
 {
     const DRIVER = 'database';
 
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 
